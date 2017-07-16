@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="本文翻译自proposal-pattern-matching，同时会加上一些这篇文章中的例子来帮助理解。
+
+ECMAScript模式匹配语法Stage 0提案提案者: Brian Terlson (Microsoft, @bterlson), Sebastian Markbåge (Facebook">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="distums">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="JavaScript模式匹配提案"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="WebSolar"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>JavaScript模式匹配提案 - WebSolar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88559975-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WELCOME & HAVE FUN</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/distums">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>JavaScript模式匹配提案</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-07-15
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻译/">#翻译</a> <a href="/tags/js/">#js</a> <a href="/tags/proposal/">#proposal</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <blockquote>
+<p>本文翻译自<a href="https://github.com/tc39/proposal-pattern-matching" target="_blank" rel="external">proposal-pattern-matching</a>，同时会加上一些<a href="https://ponyfoo.com/articles/pattern-matching-in-ecmascript" target="_blank" rel="external">这篇文章</a>中的例子来帮助理解。</p>
+</blockquote>
+<h1 id="ECMAScript模式匹配语法"><a href="#ECMAScript模式匹配语法" class="headerlink" title="ECMAScript模式匹配语法"></a>ECMAScript模式匹配语法</h1><p>Stage 0提案<br>提案者: Brian Terlson (Microsoft, <a href="https://twitter.com/bterlson" target="_blank" rel="external">@bterlson</a>), Sebastian Markbåge (Facebook, <a href="https://twitter.com/sebmarkbage" target="_blank" rel="external">@sebmarkbage</a>)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> getLength = <span class="function"><span class="params">vector</span> =&gt;</span> match (vector) &#123;</div><div class="line">    &#123; x, y, z &#125;: <span class="built_in">Math</span>.sqrt(x ** <span class="number">2</span> + y ** <span class="number">2</span> + z ** <span class="number">2</span>),</div><div class="line">    &#123; x, y &#125;:    <span class="built_in">Math</span>.sqrt(x ** <span class="number">2</span> + y ** <span class="number">2</span>),</div><div class="line">    [...]:       vector.length,</div><div class="line">    <span class="attr">else</span>: &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Unknown vector type"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>模式匹配是基于数据的结构来选择不同行为的手段之一，其方式类似于解构。比如，你可以毫不费力地用指定的属性来匹配对象并且将这些属性的值绑定到匹配分支上。模式匹配使非常简洁和高度可读的函数式模式成为可能，并且已存在于许多语言中。这个提案从<a href="https://doc.rust-lang.org/1.6.0/book/patterns.html" target="_blank" rel="external">Rust</a>和<a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching" target="_blank" rel="external">F#</a>汲取了很多灵感。</p>
+<p>本提案当前处于stage 0阶段，因此不排除会有重大的变更。任何反馈和意见都不胜感激。请使用issue来提交问题或者想法，以及发送pull request来更新内容。修订、澄清，尤其是使用示例都将十分有帮助。</p>
+<h2 id="语法概览"><a href="#语法概览" class="headerlink" title="语法概览"></a>语法概览</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">Expression :</div><div class="line">  MatchExpression</div><div class="line">  </div><div class="line">MatchExpression :</div><div class="line">  `match` [no |LineTerminator| here] `(` Expression `)` [no |LineTerminator| here] `&#123;` MatchExpressionClauses `&#125;`</div><div class="line">  // 备注：这里需要一个cover grammar来处理一个match函数调用和match表达式间的歧义</div><div class="line"></div><div class="line">MatchExpressionClauses : </div><div class="line">  MatchExpressionClause</div><div class="line">  MatchExpressionsClauses `,` MatchExpressionsClause</div><div class="line">  </div><div class="line">  // MatchExpressionClauses按顺序执行直到有一条返回了真值</div><div class="line">  </div><div class="line">MatchExpressionClause :</div><div class="line">  MatchExpressionPattern `:` AssignmentExpression</div><div class="line">  </div><div class="line">MatchExpressionPattern :</div><div class="line">  ObjectMatchPattern</div><div class="line">  ArrayMatchPattern</div><div class="line">  IdentifierMatchPattern</div><div class="line">  LiteralMatchPattern</div><div class="line">  `else`</div><div class="line"></div><div class="line">  </div><div class="line">ObjectMatchPattern :</div><div class="line">  // 基本ObjectBindingPattern，以及可选的剩余元素绑定</div><div class="line">  </div><div class="line">ArrayMatchPattern :</div><div class="line">  // 基本ArrayBindingPattern，以及可选的剩余元素绑定</div><div class="line">  </div><div class="line">IdentifierMatchPattern :</div><div class="line">  // 任何绑定标识符</div><div class="line"></div><div class="line">LiteralMatchPattern :</div><div class="line">  // number, string, boolean, null, undefined 字面量</div></pre></td></tr></table></figure>
+<p>对象和数组模式的语法有意地设计成与解构保持一致，因为出于以下理由这是有好处的。首先，它与开发者已经熟悉的现有语法相一致。其次，它允许在类似的场景中使用模式匹配和解构（例如，将来给多分派(multi-methods)等的提案）。然而在实际中，模式匹配JavaScript数值需要比简单的解构更具表达能力。这份提案添加了额外的模式来填补空白。为了提升本提案的实用性和表达能力，与解构更进一步分离也许也是合理的（比如，类似于<a href="https://github.com/tc39/proposal-pattern-matching/issues/17" target="_blank" rel="external">#17</a>那样）。</p>
+<h2 id="对象模式"><a href="#对象模式" class="headerlink" title="对象模式"></a>对象模式</h2><p>对象模式用指定的属性来匹配对象，匹配的对象上可以包含额外的属性。例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">match (obj) &#123;</div><div class="line">    &#123; x &#125;: <span class="comment">/* 匹配带有属性x的对象 */</span>,</div><div class="line">    &#123; x, ... y &#125;: <span class="comment">/* 匹配带有属性x的对象，任何额外的属性填充到y中 */</span>,</div><div class="line">    &#123; <span class="attr">x</span>: [] &#125;: <span class="comment">/* 匹配x属性是一个空数组的对象 */</span>,</div><div class="line">    &#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span> &#125;: <span class="comment">/* 匹配x和y属性值为0的对象 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> matchPoint = <span class="function"><span class="params">point</span> =&gt;</span> match (point) &#123;</div><div class="line">  &#123; x, y &#125;: [x, y]</div><div class="line">&#125;</div><div class="line">matchPoint(&#123; <span class="attr">x</span>: <span class="number">5</span>, <span class="attr">y</span>: <span class="number">7</span> &#125;)  <span class="comment">// &lt;- [5, 7]</span></div><div class="line">matchPoint(&#123; <span class="attr">x</span>: <span class="number">5</span>, <span class="attr">y</span>: <span class="number">7</span>, <span class="attr">z</span>: <span class="number">9</span> &#125;)   <span class="comment">// &lt;- [5, 7]</span></div><div class="line">matchPoint(&#123; <span class="attr">x</span>: <span class="number">3</span>, <span class="attr">z</span>: <span class="number">7</span> &#125;)  <span class="comment">// &lt;- Error</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> matchPointWithElse = <span class="function"><span class="params">point</span> =&gt;</span> match (point) &#123;</div><div class="line">  &#123; x, y &#125;: [x, y],</div><div class="line">  <span class="attr">else</span>: [<span class="number">0</span>, <span class="number">0</span>]</div><div class="line">&#125;</div><div class="line">matchPointWithElse(&#123; <span class="attr">x</span>: <span class="number">3</span>, <span class="attr">z</span>: <span class="number">7</span> &#125;)  <span class="comment">// &lt;- [0, 0]</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> matchNullPoint = <span class="function"><span class="params">point</span> =&gt;</span> match (point) &#123;</div><div class="line">  &#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span> &#125;: [x, y]</div><div class="line">&#125;</div><div class="line">matchNullPoint(&#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span> &#125;)  <span class="comment">// &lt;- [0, 0]</span></div><div class="line">matchNullPoint(&#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">1</span> &#125;)  <span class="comment">// &lt;- Error</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> isUSD = <span class="function"><span class="params">item</span> =&gt;</span> match (item) &#123;</div><div class="line">  &#123; <span class="attr">options</span>: &#123; <span class="attr">currency</span>: <span class="string">'USD'</span> &#125; &#125;: <span class="literal">true</span>,</div><div class="line">  <span class="attr">else</span>: <span class="literal">false</span></div><div class="line">&#125;</div><div class="line">isUSD(&#123; <span class="attr">value</span>: <span class="number">19.99</span>, <span class="attr">options</span>: &#123; <span class="attr">currency</span>: <span class="string">'USD'</span> &#125; &#125;)   <span class="comment">// &lt;- true</span></div><div class="line">isUSD(&#123; <span class="attr">value</span>: <span class="number">19.99</span>, <span class="attr">options</span>: &#123; <span class="attr">currency</span>: <span class="string">'ARS'</span> &#125; &#125;)   <span class="comment">// &lt;- false</span></div></pre></td></tr></table></figure>
+<h2 id="数组模式"><a href="#数组模式" class="headerlink" title="数组模式"></a>数组模式</h2><p>数组模式匹配类数组对象（拥有<code>length</code>属性的对象）。<code>...</code>绑定（可以是匿名的）用于匹配任意长度的数组。例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">match (arr) &#123;</div><div class="line">    []: <span class="comment">/* 匹配空数组 */</span>,</div><div class="line">    [...]: <span class="comment">/*匹配任何数组 */</span>,</div><div class="line">    [x]: <span class="comment">/* 匹配长度为1的数组，其第一个元素绑定为x */</span>,</div><div class="line">    [ x, ... ]: <span class="comment">/* 匹配长度至少为1的数组，其第一个元素绑定为x */</span>,</div><div class="line">    [ &#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span> &#125;, ... ]: <span class="comment">/* 匹配第一个元素是二维坐标原点的数组 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="字面量模式"><a href="#字面量模式" class="headerlink" title="字面量模式"></a>字面量模式</h2><p>字面量模式是string型，number型，bool型，null以及undefined的字面量，并且精确匹配该值。例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">match (val) &#123;</div><div class="line">    <span class="number">1</span>: <span class="comment">/* 匹配Number型值1 */</span>,</div><div class="line">    <span class="string">"hello"</span>: <span class="comment">/* 匹配String型值"hello" */</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="标识符模式与Symbol-matches"><a href="#标识符模式与Symbol-matches" class="headerlink" title="标识符模式与Symbol.matches"></a>标识符模式与Symbol.matches</h2><p>标识符会查找它们运行时候的值。一个数值是匹配的只要它实现了<code>Symbol.matches</code>方法，并且该方法在输入数值是匹配的时候返回了真值（另外解构<code>Symbol.matches</code>返回值的一种方法请参考下面<em>可选拓展</em>部分）。</p>
+<p>这个功能带来了一些优点。第一，它允许匹配正则表达式。当然也可以考虑加个RegExp模式，但是正则表达式（特别是很复杂的那些）通常不会用‘inline’的方式声明。</p>
+<p>第二，它允许简单的类型/instanceof检查——一个类型可以实现它自己的<code>Symbol.matches</code>方法用于决定某个值是不是该类型。一个简单的实现可以仅仅是<code>return value instanceof this.constructor</code>。如此简单的实现可以在通过<code>class</code>关键字新建类型的时候默认添加上。</p>
+<p>第三，更加一般地，它围绕数值间的互相匹配创建了一个协议。这在未来的提案中也许会很有用，比如<code>interface</code>提案，用于添加类似于<code>nominal interface</code>或者<code>tagged union discrimination</code>的东西。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">match (val) &#123;</div><div class="line">    <span class="attr">someRegExp</span>: <span class="comment">/* val匹配正则表达式 */</span>,</div><div class="line">    <span class="attr">Array</span>: <span class="comment">/* val是数组的实例 */</span>,</div><div class="line">    <span class="attr">CustomType</span>: <span class="comment">/* val是CustomType的实例 */</span>,</div><div class="line">    <span class="attr">PointInterface</span>: <span class="comment">/* 也许是个tagged union，或者其他类似的 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 正则表达式匹配</span></div><div class="line"><span class="keyword">const</span> numbers = <span class="regexp">/^-?\d+,\s*-?\d+$/</span></div><div class="line"><span class="keyword">const</span> matchPoint = <span class="function"><span class="params">point</span> =&gt;</span> match (point) &#123;</div><div class="line">  <span class="attr">numbers</span>: point.split(<span class="regexp">/,\s*/</span>).map(<span class="function"><span class="params">n</span> =&gt;</span> <span class="built_in">parseInt</span>(n))</div><div class="line">&#125;</div><div class="line">matchPoint(<span class="string">`7, -3`</span>) <span class="comment">// &lt;- [7, -3]</span></div><div class="line"></div><div class="line"><span class="comment">// 匹配实现Symbol.matches的对象</span></div><div class="line"><span class="keyword">const</span> threeDigitNumber = &#123;</div><div class="line">  [<span class="built_in">Symbol</span>.matches](value) &#123;</div><div class="line">    <span class="keyword">return</span> value &gt;= <span class="number">100</span> &amp;&amp; value &lt; <span class="number">1000</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">const</span> matchPointWithSymbol = <span class="function"><span class="params">point</span> =&gt;</span> match (point) &#123;</div><div class="line">  <span class="attr">threeDigitNumber</span>: point.toString.split(<span class="string">``</span>).map(<span class="function"><span class="params">n</span> =&gt;</span> <span class="built_in">parseInt</span>(n))</div><div class="line">&#125;</div><div class="line">matchPointWithSymbol(<span class="number">735</span>) <span class="comment">// &lt;- [7, 3, 5]</span></div><div class="line"></div><div class="line"><span class="comment">// 运行时的类型检查，这里Number需要实现Symbol.matches</span></div><div class="line"><span class="keyword">const</span> matchPointWithTypeCheck = <span class="function"><span class="params">point</span> =&gt;</span> match (point) &#123;</div><div class="line">  &#123; <span class="attr">x</span>: <span class="built_in">Number</span>, <span class="attr">y</span>: <span class="built_in">Number</span> &#125;: [x, y]</div><div class="line">&#125;</div><div class="line">matchPointWithTypeCheck(&#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span> &#125;) <span class="comment">// &lt;- [1, 2]</span></div><div class="line">matchPointWithTypeCheck(&#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">z</span>: <span class="number">2</span> &#125;) <span class="comment">// &lt;- Error</span></div><div class="line">matchPointWithTypeCheck(&#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="string">'two'</span> &#125;) <span class="comment">// &lt;- Error</span></div></pre></td></tr></table></figure>
+<h2 id="更多的例子"><a href="#更多的例子" class="headerlink" title="更多的例子"></a>更多的例子</h2><h3 id="嵌套模式"><a href="#嵌套模式" class="headerlink" title="嵌套模式"></a>嵌套模式</h3><p>模式可以嵌套。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> isVerbose = <span class="function"><span class="params">config</span> =&gt;</span> match (config) &#123;</div><div class="line">    &#123; <span class="attr">output</span>: &#123; <span class="attr">verbose</span>: <span class="literal">true</span> &#125; &#125;: <span class="literal">true</span>,</div><div class="line">    <span class="attr">else</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="匹配嵌套"><a href="#匹配嵌套" class="headerlink" title="匹配嵌套"></a>匹配嵌套</h3><p>由于match是一个表达式，你可以在一个match分支的后项中更进一步匹配。考虑：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> node = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'If'</span>,</div><div class="line">    <span class="attr">alternate</span>: &#123; <span class="attr">name</span>: <span class="string">'Statement'</span>, <span class="attr">value</span>: ... &#125;,</div><div class="line">    <span class="attr">consequent</span>: &#123; <span class="attr">name</span>: <span class="string">'Statement'</span>, <span class="attr">value</span>: ... &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">match (node) &#123;</div><div class="line">    &#123; <span class="attr">name</span>: <span class="string">'If'</span>, alternate &#125;: <span class="comment">// if with no else</span></div><div class="line">        match (alternate) &#123;</div><div class="line">            <span class="comment">// ...</span></div><div class="line">        &#125;,</div><div class="line">    &#123; <span class="attr">name</span>: <span class="string">'If'</span>, consequent &#125;: <span class="comment">// if with an else</span></div><div class="line">        match(consequent) &#123;</div><div class="line">            <span class="comment">// ...</span></div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述模式中的<code>true</code>也可以是任何其他模式（在这个例子中它是字面量模式）。</p>
+<h2 id="设计目标与替代方案"><a href="#设计目标与替代方案" class="headerlink" title="设计目标与替代方案"></a>设计目标与替代方案</h2><h3 id="没有fall-through"><a href="#没有fall-through" class="headerlink" title="没有fall-through"></a>没有fall-through</h3><p>Fall-through可以通过<code>continue</code>关键字实现。如果没有匹配的模式，这将会是一个运行时的错误。</p>
+<h3 id="声明vs表达式"><a href="#声明vs表达式" class="headerlink" title="声明vs表达式"></a>声明vs表达式</h3><p>将<code>match</code>设计为声明将会使它看起来与<code>switch</code>字句非常一致。然而与<code>switch</code>一致可能会是有问题的，因为分支的行为会表现地不同。使用<code>switch</code>做为<code>match</code>的思维模型是有帮助的，但并不能囊括全部。</p>
+<p>同时也没有足够的理由要让这个语法只支持声明。解析上下文或者仅限声明的<code>match</code>所存在的困难会限制其实用性。另一方面，表达式形式的<code>match</code>可以很方便地在各个地方使用，尤其是做为箭头函数的函数体。</p>
+<h3 id="匹配分支语法"><a href="#匹配分支语法" class="headerlink" title="匹配分支语法"></a>匹配分支语法</h3><p>对于匹配体的语法存在很多选择，大体上说有：类case语法，类箭头函数语法，以及只包含表达式的语法。</p>
+<h4 id="类Case语法的分支"><a href="#类Case语法的分支" class="headerlink" title="类Case语法的分支"></a>类Case语法的分支</h4><p>类Case语法的分支包含声明。这种分支的后项按一个声明接一个声明的顺序执行直到遇到流程控制关键字（或者达到case结构的末尾）。类Case的分支非常有用因为它们允许声明做为子元素，<code>throw</code>声明就经常会用到。</p>
+<p>类Case的分支在语句构成上比较难处理，因为你需要一个关键字来表示一个分支的开始。一个显而易见的选择是使用<code>case</code>。找到其他符合语境的关键字会比较困难，但也许也不是完全不可能。</p>
+<p>另外，由于<code>match</code>表达式的值是第一个匹配分支执行后的值，模式匹配的用户将不得不理解语义上不是JS开发者通常所认为的那样的<code>completion value</code>。</p>
+<p>最后，类case的分支在更小的场景中使用会让模式匹配显得繁琐。</p>
+<h4 id="类箭头函数分支"><a href="#类箭头函数分支" class="headerlink" title="类箭头函数分支"></a>类箭头函数分支</h4><p>箭头函数支持一个表达式或者一个可选的语句块。把这应用到我们的模式匹配的语法带来了两个很好的特性：简洁而不失可拓展性，和用<code>,</code>分隔的分支。这个方案应用到了上述所有例子中。</p>
+<h4 id="仅表达式分支"><a href="#仅表达式分支" class="headerlink" title="仅表达式分支"></a>仅表达式分支</h4><p>你也可以只允许声明出现在一个分支中，然后依赖于<code>do</code>表达式来提供声明。不过这看起来有点不如类箭头函数分支友好。</p>
+<h3 id="Else分支语法"><a href="#Else分支语法" class="headerlink" title="Else分支语法"></a>Else分支语法</h3><p>我这里没有过多介绍<code>else</code>是因为它与JavaScript的其他部分是一致的，但你也许会更喜欢类似<code>_</code>这种更紧凑的语法（尤其是如果你用过F#）。<code>_</code>还有可以绑定到一个值的好处，这可以保证你以无副作用的方式引用一个值。考虑：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> obj = &#123;</div><div class="line">    get x() &#123; <span class="comment">/* 计算很多东西 */</span> &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">match (obj.x) &#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="keyword">else</span>: obj.x <span class="comment">// 重新计算</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">match (obj.x) &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    _: _ <span class="comment">// 对obj.x求值的结果会绑定为_并且返回</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="可选拓展"><a href="#可选拓展" class="headerlink" title="可选拓展"></a>可选拓展</h2><h3 id="对象和数组模式匹配数值"><a href="#对象和数组模式匹配数值" class="headerlink" title="对象和数组模式匹配数值"></a>对象和数组模式匹配数值</h3><p>数组模式可以拓展成允许带一个数值以用任何二元操作符将属性或者元素和某个特定值进行比较。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// point对象的x和y属性不能大于100</span></div><div class="line"><span class="keyword">let</span> isPointOutOfBounds = <span class="function"><span class="params">p</span> =&gt;</span> match (p) &#123;</div><div class="line">    &#123; x &gt; <span class="number">100</span>, y &#125;: <span class="literal">true</span>,</div><div class="line">    &#123; x, y &gt; <span class="number">100</span> &#125;: <span class="literal">true</span>,</div><div class="line">    <span class="attr">else</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="If判断"><a href="#If判断" class="headerlink" title="If判断"></a>If判断</h3><p>可以在匹配分支上下文中对待匹配值做各种测试往往是便利的。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">match (p) &#123;</div><div class="line">    &#123; x, y &#125; <span class="keyword">if</span> x === y: <span class="literal">true</span>,</div><div class="line">    <span class="attr">else</span>: <span class="literal">false</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="解构运行时的匹配结果"><a href="#解构运行时的匹配结果" class="headerlink" title="解构运行时的匹配结果"></a>解构运行时的匹配结果</h3><p>支持解构运行时的匹配结果可能是很有用的，尤其是正则表达式的匹配。考虑：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> nums = <span class="regexp">/(\d)(\d)(\d)/</span>;</div><div class="line"><span class="keyword">let</span> lets = <span class="regexp">/(\w)(\w)(\w)/</span>;</div><div class="line"><span class="keyword">let</span> str = <span class="string">'123'</span>;</div><div class="line">match (str) &#123;</div><div class="line">    nums -&gt; [, first, second, third]: first + second + third,</div><div class="line">    lets -&gt; [, first, second, third]: first + second + third</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>正则表达式对象的<code>Symbol.matches</code>方法会被调用，并且如果匹配成功了，则返回match对象。这个match对象可以通过<code>-&gt;</code>字句更进一步解构。</p>
+<h3 id="匹配多个模式"><a href="#匹配多个模式" class="headerlink" title="匹配多个模式"></a>匹配多个模式</h3><p>有些时候匹配多个模式是有用的。这可以通过使用<code>||</code>来分割多个模式（类似于Rust和F#）。你也可以通过<code>&amp;&amp;</code>来要求一个值匹配多个模式。</p>
+<h3 id="对象默认‘严格匹配’"><a href="#对象默认‘严格匹配’" class="headerlink" title="对象默认‘严格匹配’"></a>对象默认‘严格匹配’</h3><p>在上文提案中，对象上的额外属性是允许的，而更长的数组则是不允许的除非你显示使用<code>...</code>来匹配。这同样也可以应用到对象上：<code>{x}</code>将仅匹配只拥有一个名为x的属性的对象，而<code>{x,...}</code>匹配任何拥有属性x的对象。但是，对象匹配的主要使用场景很可能并不关心额外的属性，而且通过<code>_</code>属性或者Symbol键值来扩充对象以添加额外的metadata是很普遍的，提案的语法看起来是没问题的（当然linter是可以将这强制为显示的如果它们希望）。</p>
+<h3 id="数组模式匹配可迭代对象"><a href="#数组模式匹配可迭代对象" class="headerlink" title="数组模式匹配可迭代对象"></a>数组模式匹配可迭代对象</h3><p>在上文提案中，数组模式仅对拥有<code>length</code>属性的类数组对象有效。它可以拓展为支持任何可迭代对象，但必须注意避免产生副作用以及在匹配分支间移动时多次迭代可迭代对象。</p>
+<h3 id="没有围绕匹配数值的圆括号"><a href="#没有围绕匹配数值的圆括号" class="headerlink" title="没有围绕匹配数值的圆括号"></a>没有围绕匹配数值的圆括号</h3><p>（我认为）cover grammar是可以避免的，通过进一步摆脱<code>switch</code>的语法同时省略<code>match</code>数值旁边的圆括号：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">match val &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这移除了和对一个名为<code>match</code>函数的调用之间的歧义。</p>
+<h3 id="内置Symbol-matches实现"><a href="#内置Symbol-matches实现" class="headerlink" title="内置Symbol.matches实现"></a>内置Symbol.matches实现</h3><p><code>Symbol.matches</code>可以在许多内置类型上实现，比如Number和String，用于匹配该类型的数值。另外，类可以创建<code>Symbol.matches</code>方法来为你做<code>instanceof</code>检查。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>留言:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="https://twitter.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:yiqidaoshan@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 distums<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'distums';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

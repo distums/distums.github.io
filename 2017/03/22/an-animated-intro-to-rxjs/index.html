@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="通过动画介绍RxJS原文：An Animated Intro to RxJS
+你或许曾经听过RxJS，或者ReactiveX，或者响应式编程，或者仅仅是函数式编程。当谈论到最新最棒的前端技术时，这些术语变得越来越突出。并且如果你与我类似，当你最初尝试去学习它的时候，你会感到十分困惑。
+按Reacti">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="distums">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="通过动画介绍RxJS"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="WebSolar"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>通过动画介绍RxJS - WebSolar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88559975-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WELCOME & HAVE FUN</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/distums">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>通过动画介绍RxJS</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-03-22
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻译/">#翻译</a> <a href="/tags/rxjs/">#rxjs</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <script async src="//production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h1 id="通过动画介绍RxJS"><a href="#通过动画介绍RxJS" class="headerlink" title="通过动画介绍RxJS"></a>通过动画介绍RxJS</h1><p><strong><a href="https://css-tricks.com/animated-intro-rxjs/" target="_blank" rel="external">原文：An Animated Intro to RxJS</a></strong></p>
+<p>你或许曾经听过RxJS，或者ReactiveX，或者响应式编程，或者仅仅是函数式编程。当谈论到最新最棒的前端技术时，这些术语变得越来越突出。并且如果你与我类似，当你最初尝试去学习它的时候，你会感到十分困惑。</p>
+<p>按<a href="http://reactivex.io/intro.html" target="_blank" rel="external">ReactiveX.io</a>的说法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ReactiveX is a library for composing asynchronous and event-based programs by using observable sequences.</div><div class="line"></div><div class="line">ReactiveX是通过使用Observable序列来组合异步和基于事件的程序的库。</div></pre></td></tr></table></figure>
+<p>简短的一句话包含了很多需要理解的东西。在这篇文章，我们将通过创建<strong>响应的动画</strong>这种不同的手段来学习RxJS（ReactiveX的JavaScript实现）和Observable。</p>
+<h2 id="理解Observable"><a href="#理解Observable" class="headerlink" title="理解Observable"></a>理解Observable</h2><p>一个数组是一系列元素的集合，比如<code>[1, 2, 3, 4, 5]</code>。你可以立即取得所有元素，并且你可以对这些元素做诸如<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" rel="external">map</a>和<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank" rel="external">filter</a>的操作。这允许你对这一系列元素做任何形式的变换。</p>
+<p>现在假设数组的每个元素<em>随时间的流逝</em>出现，这就是说你不能立马取得所有元素，而是在一段时间后取得一个。你可能在第1秒的时候拿到第一个元素，然后第3秒的时候第二个，以此类推。用图来表示的话大概就是这样：</p>
+<p><img src="./rx-article-1.svg" alt=""></p>
+<p>这可以描述为一系列数值的流、或者是一连串的事件、或者更贴切地：一个<strong>Observable</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">An observable is a collection of values over time.</div><div class="line"></div><div class="line">一个Observable是一系列随时间产生的数值。</div></pre></td></tr></table></figure>
+<p>正如数组一样，我们可以对这些数值做<code>map</code>、<code>filter</code>等等操作来新建或者组合出新的Observable。最终，你可以订阅这些Observable，并对最后的一串数值做任何你想要的操作。这就是RxJS。</p>
+<h2 id="开始使用RxJS"><a href="#开始使用RxJS" class="headerlink" title="开始使用RxJS"></a>开始使用RxJS</h2><p>开始使用<a href="http://reactivex.io/rxjs/" target="_blank" rel="external">RxJS</a>最简单的方法是通过CDN。不过，依据你的项目的需求，还有<a href="http://reactivex.io/rxjs/manual/installation.html" target="_blank" rel="external">很多其它的方式</a>可以用来安装它。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- RxJS的最新的、minified后的版本 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/@reactivex/rxjs@latest/dist/global/Rx.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>一旦在你的项目里引入RxJS，你可以从<em>差不多任何东西</em>创建一个Observable：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> aboutAnything = <span class="number">42</span>;</div><div class="line"></div><div class="line"><span class="comment">// 从差不多任何东西（单个值）。</span></div><div class="line"><span class="comment">// 这个Observable会emit该数值，然后结束。</span></div><div class="line"><span class="keyword">const</span> meaningOfLife$ = Rx.Observable.just(aboutAnything);</div><div class="line"></div><div class="line"><span class="comment">// 从数组或者可遍历的（iterable）对象.</span></div><div class="line"><span class="comment">// 这个Observable会emit数组的每一项元素，然后结束。</span></div><div class="line"><span class="keyword">const</span> myNumber$ = Rx.Observable.from([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]);</div><div class="line"></div><div class="line"><span class="comment">// 从一个promise.</span></div><div class="line"><span class="comment">// 这个Observable会emit该promsie的最终结果，然后结束（或者报错）。</span></div><div class="line"><span class="keyword">const</span> myData$ = Rx.Observable.fromPromise(fetch(<span class="string">'http://example.com/users'</span>));</div><div class="line"></div><div class="line"><span class="comment">// 从一个事件.</span></div><div class="line"><span class="comment">// 这个Observable会不断地emit来自于事件监听器的事件</span></div><div class="line"><span class="keyword">const</span> mouseMove$ = Rx.Observable</div><div class="line">  .fromEvent(<span class="built_in">document</span>.documentElement, <span class="string">'mousemove'</span>);</div></pre></td></tr></table></figure>
+<p><em>注意：通常约定在变量某尾加美元符号($)用于表示该变量是一个Observable</em>。</p>
+<p>Observable可以用于统一任何可以表示成一串随时间产生的数值的东西，比如事件、Promise、计时器、intervals以及动画。</p>
+<p>但是，这些Observable做不了很多东西，除非你实际去<em>监测（observe）</em>它们。<strong>订阅</strong>就是用来做这个事，可以通过使用<code>.subscribe()</code>完成。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 每当我们从Observable接收到一个数字,</span></div><div class="line"><span class="comment">// 就将它输出到控制台.</span></div><div class="line">myNumber$.subscribe(<span class="function"><span class="params">number</span> =&gt;</span> <span class="built_in">console</span>.log(number));</div><div class="line"></div><div class="line"><span class="comment">// Result:</span></div><div class="line"><span class="comment">// &gt; 1</span></div><div class="line"><span class="comment">// &gt; 2</span></div><div class="line"><span class="comment">// &gt; 3</span></div><div class="line"><span class="comment">// &gt; 4</span></div><div class="line"><span class="comment">// &gt; 5</span></div></pre></td></tr></table></figure>
+<p>让我们实际看看：</p>
+<p data-height="400" data-theme-id="1" data-slug-hash="d6f5fa72a9b7b6c2c9141de6fa1ab93f" data-default-tab="js,result" data-user="davidkpiano" data-embed-version="2" data-pen-title="" class="codepen"><a href="http://codepen.io/kh-davidkpiano/pen/d6f5fa72a9b7b6c2c9141de6fa1ab93f" target="_blank" rel="external">See the Pen</a></p>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> docElm = <span class="built_in">document</span>.documentElement;</div><div class="line"><span class="keyword">const</span> cardElm = <span class="built_in">document</span>.querySelector(<span class="string">'#card'</span>);</div><div class="line"><span class="keyword">const</span> titleElm = <span class="built_in">document</span>.querySelector(<span class="string">'#title'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> mouseMove$ = Rx.Observable</div><div class="line">  .fromEvent(docElm, <span class="string">'mousemove'</span>);</div><div class="line"></div><div class="line">mouseMove$.subscribe(<span class="function"><span class="params">event</span> =&gt;</span> &#123;</div><div class="line">  titleElm.innerHTML = <span class="string">`<span class="subst">$&#123;event.clientX&#125;</span>, <span class="subst">$&#123;event.clientY&#125;</span>`</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>从<code>mouseMove$</code> Observable，每次触发<code>mousemove</code>事件时，订阅函数会用鼠标的位置更新<code>titleElm</code>的<code>.innerHTML</code>内容。<a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-map" target="_blank" rel="external">.map</a> Operator（机制和<code>Array.prototype.map</code>方法类似）有助于简化数据：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 生成例如&#123;x: 42, y: 100&#125;而不是整个事件对象</span></div><div class="line"><span class="keyword">const</span> mouseMove$ = Rx.Observable</div><div class="line">  .fromEvent(docElm, <span class="string">'mousemove'</span>)</div><div class="line">  .map(<span class="function"><span class="params">event</span> =&gt;</span> (&#123; <span class="attr">x</span>: event.clientX, <span class="attr">y</span>: event.clientY &#125;));</div></pre></td></tr></table></figure>
+<p>使用一点数学知识以及inline样式，你可以让卡片随鼠标旋转。<code>pos.y / clientHeight</code>和<code>pos.x / clientWidth</code>生成的值都介于0和1之间，因此将它乘以50再减去50的一半(25)会生成介于-25和25的值，而这就是我们需要的用于旋转的值。</p>
+<p data-height="500" data-theme-id="1" data-slug-hash="55cb38a26b9166c41017c6512ea00209" data-default-tab="js,result" data-user="davidkpiano" data-embed-version="2" data-pen-title="" class="codepen"><a href="http://codepen.io/kh-davidkpiano/pen/55cb38a26b9166c41017c6512ea00209" target="_blank" rel="external">See the Pen</a></p>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> docElm = <span class="built_in">document</span>.documentElement;</div><div class="line"><span class="keyword">const</span> cardElm = <span class="built_in">document</span>.querySelector(<span class="string">'#card'</span>);</div><div class="line"><span class="keyword">const</span> titleElm = <span class="built_in">document</span>.querySelector(<span class="string">'#title'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> &#123; clientWidth, clientHeight &#125; = docElm;</div><div class="line"></div><div class="line"><span class="keyword">const</span> mouseMove$ = Rx.Observable</div><div class="line">  .fromEvent(docElm, <span class="string">'mousemove'</span>)</div><div class="line">  .map(<span class="function"><span class="params">event</span> =&gt;</span> (&#123; <span class="attr">x</span>: event.clientX, <span class="attr">y</span>: event.clientY &#125;))</div><div class="line"></div><div class="line">mouseMove$.subscribe(<span class="function"><span class="params">pos</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> rotX = (pos.y / clientHeight * <span class="number">-50</span>) - <span class="number">25</span>;</div><div class="line">  <span class="keyword">const</span> rotY = (pos.x / clientWidth * <span class="number">50</span>) - <span class="number">25</span>;</div><div class="line"></div><div class="line">  cardElm.style = <span class="string">`</span></div><div class="line">    transform: rotateX(<span class="subst">$&#123;rotX&#125;</span>deg) rotateY(<span class="subst">$&#123;rotY&#125;</span>deg);</div><div class="line">  `;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="使用-merge组合Observable"><a href="#使用-merge组合Observable" class="headerlink" title="使用.merge组合Observable"></a>使用.merge组合Observable</h2><p>现在假设你想在触摸设备上响应鼠标移动或者touch移动事件。无需混乱的回调，使用RxJS你可以以多种方式组合Observable。在这个例子里，可以使用<code>.merge</code> Operator。正如多条车道合并成一条一样，这可以返回一个单独的包含了从多个Observable合并的全部数据的Observable。</p>
+<p><img src="./merge.png" alt=""></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> touchMove$ = Rx.Observable</div><div class="line">  .fromEvent(docElm, <span class="string">'touchmove'</span>)</div><div class="line">  .map(<span class="function"><span class="params">event</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">x</span>: event.touches[<span class="number">0</span>].clientX,</div><div class="line">    <span class="attr">y</span>: event.touches[<span class="number">0</span>].clientY</div><div class="line">  &#125;));</div><div class="line"></div><div class="line"><span class="keyword">const</span> move$ = Rx.Observable.merge(mouseMove$, touchMove$);</div><div class="line"></div><div class="line">move$.subscribe(<span class="function"><span class="params">pos</span> =&gt;</span> &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>去吧，试着在触摸设备上平移下看看：</p>
+<p data-height="500" data-theme-id="1" data-slug-hash="4a430c13f4faae099e5a34cb2a82ce6d" data-default-tab="js,result" data-user="davidkpiano" data-embed-version="2" data-pen-title="" class="codepen"><a href="http://codepen.io/kh-davidkpiano/pen/4a430c13f4faae099e5a34cb2a82ce6d" target="_blank" rel="external">See the Pen</a></p>
+
+<p>还有其他<a href="http://reactivex.io/documentation/operators.html#combining" target="_blank" rel="external">有用的Operator可以用来组合Observable</a>，比如<code>.switch()</code>、<code>combineLatest()</code>、和<code>.withLatestFrom()</code>。我们会在后续讨论它们。</p>
+<h2 id="添加平滑过渡"><a href="#添加平滑过渡" class="headerlink" title="添加平滑过渡"></a>添加平滑过渡</h2><p>卡片旋转效果的确很棒，但是动作有点太僵硬了。无论鼠标（或者手指）在什么时候停止了，旋转也随之立即停止。我们可以用线性插值（LERP）来改进它。RachelSmith的这篇<a href="https://codepen.io/rachsmith/post/animation-tip-lerp" target="_blank" rel="external">很赞的文章</a>大体上描述了这一技巧。本质上，LEPR是在每个动画帧移动距离的一部分，而不是直接从A点调到B点。这可以带来平滑的过渡，即使鼠标/手指动作已经停止了。</p>
+<p>让我们创建一个只做这样一个功能的函数：给定初始值和终止值，使用LERP计算出下一个值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function lerp(start, end) &#123;</div><div class="line">  const dx = end.x - start.x;</div><div class="line">  const dy = end.y - start.y;</div><div class="line"></div><div class="line">  return &#123;</div><div class="line">    x: start.x + dx * 0.1,</div><div class="line">    y: start.y + dy * 0.1,</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>简短扼要。我们有了这样一个<em>纯</em>函数，它通过在每个动画帧时把当前（开始）位置向下一个（终止）位置移动10%，每次返回一个新的插值计算后的位置值。</p>
+<h2 id="Schedulers-and-interval"><a href="#Schedulers-and-interval" class="headerlink" title="Schedulers and .interval"></a>Schedulers and .interval</h2><p>现在的问题是我们如何在RxJS里表示动画帧？事实上，RxJS有个东西叫<strong>Schedulers</strong>用于控制一个Observable何时应该emit数据，以及其他的一些东西比如订阅器何时应开始接收数值。</p>
+<p>使用<code>Rx.Observable.interval()</code>，你可以创建一个按规定时间间隔emit数值的Observable，例如每隔一秒（<code>Rx.Observable.interval(1000)</code>）。如果你使用一个极小的间隔，比如<code>Rx.Observable.interval(0)</code>，并且使用<code>Rx.Scheduler.animationFrame</code>安排它只在每个动画帧emit数值，大约每16到17ms，在每个动画帧里将会有一个数值被emit出来，这正是我们所预期的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> animationFrame$ = Rx.Observable.interval(<span class="number">0</span>, Rx.Scheduler.animationFrame);</div></pre></td></tr></table></figure>
+<h2 id="用-withLatestFrom来组合"><a href="#用-withLatestFrom来组合" class="headerlink" title="用.withLatestFrom来组合"></a>用.withLatestFrom来组合</h2><p>为了创建平滑的线性插值，你只需关注每个动画节点鼠标/触摸的最新位置。为此，可以使用<code>.withLatestFrom()</code> Operator：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> smoothMove$ = animationFrame$</div><div class="line">  .withLatestFrom(move$, (frame, move) =&gt; move);</div></pre></td></tr></table></figure>
+<p>现在我们有了一个新的Observable <code>smoothMove$</code>，它<em>只在</em><code>animationFrame$</code> emit一个数值的时候emit <code>move$</code>的最新数值。这是我们所预期的——你不会希望数值在动画帧外被emit出来（除非你喜欢卡顿）。第二参数是一个函数，用于描述如何组合来自每个Observable的最新数值。针对这种情形，真正重要的值只有<code>move</code>的数值，因此只有它被返回了。</p>
+<p><img src="./with-latest-from.png" alt=""></p>
+<h2 id="使用-scan来过渡"><a href="#使用-scan来过渡" class="headerlink" title="使用.scan来过渡"></a>使用.scan来过渡</h2><p>既然你已经有了一个Observable用于在每个动画帧emit来自<code>move$</code>的最新数值，是时候加上线性插值了。<code>.scan()</code> Operator用于“累加”一个Observable的当前值和下一个值，通过给定一个接受上述值为参数的函数。</p>
+<p><img src="./scan.png" alt=""></p>
+<p>这是使用我们的线性插值用例的完美场景。还记得我们的<code>lerp(start, end)</code>接收两个参数：<code>start</code>（当前值）和<code>end</code>（终止值）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> smoothMove$ = animationFrame$</div><div class="line">  .withLatestFrom(move$, (frame, move) =&gt; move)</div><div class="line">  .scan(<span class="function">(<span class="params">current, next</span>) =&gt;</span> lerp(current, next));</div><div class="line">  <span class="comment">// 或者简化为：.scan(lerp)</span></div></pre></td></tr></table></figure>
+<p>现在你可订阅<code>smoothMove$</code>而不是<code>move$</code>来实际体验下线性插值过渡。</p>
+<p data-height="500" data-theme-id="1" data-slug-hash="127ee82ad742b4dddd657703e2259852" data-default-tab="js,result" data-user="davidkpiano" data-embed-version="2" data-pen-title="" class="codepen"><a href="http://codepen.io/kh-davidkpiano/pen/127ee82ad742b4dddd657703e2259852" target="_blank" rel="external">See the Pen</a></p>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>当然，RxJS并<em>不是</em>一个动画库，但是用一种组合式的、声明式的方式来处理随时间产生的值是ReactiveX的核心理念，因此动画可以作为一种很棒的方式来演示这一技术。响应式编程是一种不同的思考编程的方式，并带有许多好处：</p>
+<ul>
+<li><p>它是声明式的、可组合的以及不可变的，这能避免回调地狱，并且使你的代码更加紧凑、可重用以及模块化。</p>
+</li>
+<li><p>它在处理各种类型的异步数据时非常有用，无论是获取数据，WebSocket通信，监听不同源的事件，或者甚至是动画。</p>
+</li>
+<li><p>“关注点分离”——你使用Observable以及Operator声明式地表示你想要的数据，然后单独使用<code>.subscribe()</code>处理副作用（side effects），而不是将它们分散到代码库的各个地方。</p>
+</li>
+<li><p>有<em>非常多不同语言</em>的实现——Java，PHP，Python，Ruby，C#，Swift，以及其他一些你可能甚至都没听过的语言。</p>
+</li>
+<li><p>它不是一个<em>框架</em>，并且很多流行的框架（比如React，Angular以及Vue）可以很好地配合RxJS使用。</p>
+</li>
+<li><p>如果你希望你可以找到很多时髦点，但是ReactiveX的最初实现几乎是在10年前（2009），源于<a href="http://conal.net/papers/icfp97/" target="_blank" rel="external">ConalElliott和PaulHudak</a>20年前（1997）提出的关于描述响应函数式动画（吃惊吧）的想法。不用说，它是经过实战检验的。</p>
+</li>
+</ul>
+<p>本文探讨了RxJS的一系列有用的部分及概念——使用<code>.fromEvent()</code>和<code>.interval()</code>创建Observable，使用<code>.map()</code>和<code>.scan()</code>操作Observable，使用<code>.merge()</code>和<code>.withLatestFrom()</code>组合Observable，并且通过<code>Rx.Scheduler.animationFrame</code>介绍了Schedulers。当然还有很多有用的资源可以用于学习RxJS：</p>
+<ul>
+<li><p><a href="http://reactivex.io/rxjs/" target="_blank" rel="external">ReactiveX: RxJS</a>-官方文档</p>
+</li>
+<li><p><a href="http://rxmarbles.com/" target="_blank" rel="external">RxMarbles</a>-可视化Observable</p>
+</li>
+<li><p>AndreStaltz<br>的<a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754" target="_blank" rel="external">The introduction to Reactive Programming you’ve been missing</a></p>
+</li>
+</ul>
+<p>如果你希望更进一步学习使用RxJS来做动画（或者使用CSS变量编写更加声明式的代码），可以查看<a href="http://slides.com/davidkhourshid/reactanim#/" target="_blank" rel="external">我在CSS DevConf 2016上的幻灯片</a>以及<a href="https://www.youtube.com/watch?v=lTCukb6Zn3g" target="_blank" rel="external">我在JSConf Iceland 2016上的演讲</a>。如果是寻找灵感，下面是一些使用RxJS做动画的Pens：</p>
+<ul>
+<li><p><a href="http://codepen.io/davidkpiano/pen/Vmyyzd" target="_blank" rel="external">3D Digital Clock</a></p>
+</li>
+<li><p><a href="http://codepen.io/davidkpiano/pen/mAoaxP" target="_blank" rel="external">Heart App Concept</a></p>
+</li>
+<li><p><a href="http://codepen.io/Enki/pen/eBwKgO" target="_blank" rel="external">Perspective Drag with RxJS</a></p>
+</li>
+</ul>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>留言:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="https://twitter.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:yiqidaoshan@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 distums<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'distums';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Cache API原文地址
+ServiceWorker API意在让开发者能对缓存进行更多控制，包括缓存什么、不缓存什么以及如何缓存。当然我们也可以用ETags或者其同类来完成，但是使用JavaScript在代码级别做控制体验更好，更加可控。然而对于每个API，往缓存添加东西并不是娱乐或者游戏——你">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="distums">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Cache API"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="WebSolar"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Cache API - WebSolar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88559975-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WELCOME & HAVE FUN</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/distums">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Cache API</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-02-20
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻译/">#翻译</a> <a href="/tags/js/">#js</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="Cache-API"><a href="#Cache-API" class="headerlink" title="Cache API"></a>Cache API</h1><p><a href="https://davidwalsh.name/cache" target="_blank" rel="external">原文地址</a></p>
+<p>ServiceWorker API意在让开发者能对缓存进行更多控制，包括缓存什么、不缓存什么以及如何缓存。当然我们也可以用ETags或者其同类来完成，但是使用JavaScript在代码级别做控制体验更好，更加可控。然而对于每个API，往缓存添加东西并不是娱乐或者游戏——你不得不亲自做清理工作，而这个“清理工作”我指的就是删除缓存。</p>
+<p>让我们看看如果获取缓存，往缓存添加或者删除某个请求的缓存，以及将整个缓存删除。</p>
+<h1 id="检测cache-API"><a href="#检测cache-API" class="headerlink" title="检测cache API"></a>检测<code>cache</code> API</h1><p>可以通过检查<code>window</code>里面<code>caches</code>对象的存在性来检测浏览器是否支持Cache API：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="string">'caches'</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</div><div class="line">  <span class="comment">// Has support!</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="创建一个缓存"><a href="#创建一个缓存" class="headerlink" title="创建一个缓存"></a>创建一个缓存</h1><p>创建一个缓存需要调用<code>cahces.open</code>函数同时传入缓存名字：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">caches.open(<span class="string">'test-cache'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">cache</span>) </span>&#123;</div><div class="line">  <span class="comment">// Cache is created and accessible</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><code>caches.open</code>调用会返回一个<a href="https://davidwalsh.name/promises" target="_blank" rel="external">Promise</a>，而<code>cache</code>对象要么是新创建的，要么在<code>open</code>调用前就存在了。</p>
+<h1 id="往缓存添加内容"><a href="#往缓存添加内容" class="headerlink" title="往缓存添加内容"></a>往缓存添加内容</h1><p>你可以将缓存看成一个<code>Request</code>对象的数组，而每个对象可以作为访问由浏览器保存起来的相应响应内容的键。简单的缓存添加由两个主要的函数完成：<code>add</code>和<code>addAll</code>。这些函数的参数可以是一个内容应被获取和缓存的URL字符串，或者是一个<code>Request</code>对象。你可以通过我的<a href="https://davidwalsh.name/fetch" target="_blank" rel="external">fetch API</a>这篇文章学习更多关于<code>Request</code>对象的知识。</p>
+<p>可以使用<code>addAll</code>方法批量往缓存添加URL：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">caches.open(<span class="string">'test-cache'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">cache</span>) </span>&#123; </div><div class="line">  cache.addAll([<span class="string">'/'</span>, <span class="string">'/images/logo.png'</span>])</div><div class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </div><div class="line">      <span class="comment">// Cached!</span></div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><code>addAll</code>方法接受一个URL的数组，其中每个URL的内容都应被缓存。<code>addAll</code>方法返回一个Promise。如果要添加一个URL，则可以使用<code>add</code>方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">caches.open(<span class="string">'test-cache'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">cache</span>) </span>&#123;</div><div class="line">  cache.add(<span class="string">'/page/1'</span>);  <span class="comment">// "/page/1" URL will be fetched and cached!</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><code>add</code>还接受一个自定义的<code>Request</code>对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">caches.open(<span class="string">'test-cache'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">cache</span>) </span>&#123;</div><div class="line">  cache.add(<span class="keyword">new</span> Request(<span class="string">'/page/1'</span>, &#123; <span class="comment">/* request options */</span> &#125;));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>类似于<code>add</code>方法，还有一个<code>put</code>方法可以用于同时添加URL及其<code>Response</code>对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">fetch(<span class="string">'/page/1'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> caches.open(<span class="string">'test-cache'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">cache</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> cache.put(<span class="string">'/page/1'</span>, response);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="探测缓存内容"><a href="#探测缓存内容" class="headerlink" title="探测缓存内容"></a>探测缓存内容</h1><p>要查看已经被缓存的请求，你可以使用每个缓存对象的<code>keys</code>方法来获取一个<code>Request</code>对象的数组：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">caches.open(<span class="string">'test-cache'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">cache</span>) </span>&#123; </div><div class="line">  cache.keys().then(<span class="function"><span class="keyword">function</span>(<span class="params">cachedRequests</span>) </span>&#123; </div><div class="line">    <span class="built_in">console</span>.log(cachedRequests); <span class="comment">// [Request, Request]</span></div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">Request &#123;</div><div class="line">  bodyUsed: false</div><div class="line">  credentials: "omit"</div><div class="line">  headers: Headers</div><div class="line">  integrity: ""</div><div class="line">  method: "GET"</div><div class="line">  mode: "no-cors"</div><div class="line">  redirect: "follow"</div><div class="line">  referrer: ""</div><div class="line">  url: "https://fullhost.tld/images/logo.png"</div><div class="line">&#125;</div><div class="line">*/</div></pre></td></tr></table></figure>
+<p>如果你想查看一个缓存了的<code>Request</code>对象的响应内容，你可以使用<code>cache.match</code>和<code>cache.matchAll</code>来完成：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">caches.open(<span class="string">'test-cache'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">cache</span>) </span>&#123;</div><div class="line">  cache.match(<span class="string">'/page/1'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">matchedResponse</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(matchedResponse);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">Response &#123;</div><div class="line">  body: (...),</div><div class="line">  bodyUsed: false,</div><div class="line">  headers: Headers,</div><div class="line">  ok: true,</div><div class="line">  status: 200,</div><div class="line">  statusText: "OK",</div><div class="line">  type: "basic",</div><div class="line">  url: "https://davidwalsh.name/page/1"</div><div class="line">&#125;</div><div class="line">*/</div></pre></td></tr></table></figure>
+<p>同样你可以通过我的<a href="https://davidwalsh.name/fetch" target="_blank" rel="external">fetch API</a>这篇文章学习更多关于<code>Response</code>对象的知识。</p>
+<h1 id="移除一个请求的缓存"><a href="#移除一个请求的缓存" class="headerlink" title="移除一个请求的缓存"></a>移除一个请求的缓存</h1><p>使用缓存的<code>delete</code>方法来移除一个请求的缓存：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">caches.open(<span class="string">'test-cache'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">cache</span>) </span>&#123;</div><div class="line">  cache.delete(<span class="string">'/page/1'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>缓存里面将不再包含<code>/page/1</code>的内容！</p>
+<h1 id="获取已存在缓存的名字"><a href="#获取已存在缓存的名字" class="headerlink" title="获取已存在缓存的名字"></a>获取已存在缓存的名字</h1><p>使用<code>caches.keys</code>获取已经存在了的缓存的名字：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">caches.keys().then(<span class="function"><span class="keyword">function</span>(<span class="params">cacheKeys</span>) </span>&#123; </div><div class="line">  <span class="built_in">console</span>.log(cacheKeys); <span class="comment">// ex: ["test-cache"]</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>同样的<code>window.caches.keys</code>返回一个<a href="https://davidwalsh.name/tutorials/promises" target="_blank" rel="external">Promise</a>。</p>
+<h1 id="删除一个缓存"><a href="#删除一个缓存" class="headerlink" title="删除一个缓存"></a>删除一个缓存</h1><p>删除一个已知名字的缓存是很简单的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">caches.delete(<span class="string">'test-cache'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Cache successfully deleted!'</span>); </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>通常你删除一个缓存然后会用一个新的替代（为了触发一个新的service worker的re-installation）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Assuming `CACHE_NAME` is the newest name</span></div><div class="line"><span class="comment">// Time to clean up the old!</span></div><div class="line"><span class="keyword">var</span> CACHE_NAME = <span class="string">'version-8'</span>;</div><div class="line"></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line">caches.keys().then(<span class="function"><span class="keyword">function</span>(<span class="params">cacheNames</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.all(</div><div class="line">    cacheNames.map(<span class="function"><span class="keyword">function</span>(<span class="params">cacheName</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span>(cacheName != CACHE_NAME) &#123;</div><div class="line">        <span class="keyword">return</span> caches.delete(cacheName);</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  );</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>当你想成为一名service worker专家时，你会乐意将这些代码段保存到你的工具箱中。Chrome和火狐已经支持service worker了，以此你将看到更多的网站/app（更加可靠）离线也能访问，而且加载速度更快。Enjoy!</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>留言:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="https://twitter.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:yiqidaoshan@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 distums<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'distums';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

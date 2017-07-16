@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="ES6类详解原文地址
+Javascript的类是什么意思？Javascript是基于原型继承的语言，那么ES6类究竟又是什么？它是原型继承的语法糖——一种使语言对来自其他范式的程序员更有吸引力的手段，他们可能对原型链并不熟悉。ES6的很多特性（比如解构）事实上都是语法糖，类也不例外。我乐意阐明这个事">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="distums">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="ES6类详解"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="WebSolar"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>ES6类详解 - WebSolar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88559975-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WELCOME & HAVE FUN</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/distums">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>ES6类详解</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-02-08
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻译/">#翻译</a> <a href="/tags/js/">#js</a> <a href="/tags/class/">#class</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="ES6类详解"><a href="#ES6类详解" class="headerlink" title="ES6类详解"></a>ES6类详解</h1><p><a href="https://ponyfoo.com/articles/es6-classes-in-depth" target="_blank" rel="external">原文地址</a></p>
+<h2 id="Javascript的类是什么意思？"><a href="#Javascript的类是什么意思？" class="headerlink" title="Javascript的类是什么意思？"></a>Javascript的类是什么意思？</h2><p>Javascript是基于原型继承的语言，那么ES6类究竟又是什么？它是原型继承的语法糖——一种使语言对来自其他范式的程序员更有吸引力的手段，他们可能对原型链并不熟悉。ES6的很多特性（比如<a href="https://ponyfoo.com/articles/es6-destructuring-in-depth" target="_blank" rel="external">解构</a>）事实上都是语法糖，类也不例外。我乐意阐明这个事实因为这会使理解ES6类底层机制更加容易。对语言的巨大改造并不存在，只是使熟悉类的人更容易驾驭原型继承。</p>
+<p>尽管我不喜欢把这特性称为“类”，我不得不承认这个语法事实上比用ES5的常规原型继承语法更易于使用，这也是每个人都能得到的好处——无论它是否叫做类或者其他名字。</p>
+<p>让我们进入正题，我假定你已经理解了原型继承——因为正在阅读一篇关于Javascript的博客。下面你将这么编写一个类<code>Car</code>，它可以用于实例化，鼓起干劲然后行动吧。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.fuel = <span class="number">0</span>;</div><div class="line">  <span class="keyword">this</span>.distance = <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.move = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.fuel &lt; <span class="number">1</span>) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">RangeError</span>(<span class="string">'Fuel tank is depleted'</span>)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">this</span>.fuel--</div><div class="line">  <span class="keyword">this</span>.distance += <span class="number">2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.addFuel = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.fuel &gt;= <span class="number">60</span>) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">RangeError</span>(<span class="string">'Fuel tank is full'</span>)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">this</span>.fuel++</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为了是汽车前进，你将使用下面的代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> car = <span class="keyword">new</span> Car()</div><div class="line">car.addFuel()</div><div class="line">car.move()</div><div class="line">car.move()</div><div class="line"><span class="comment">// &lt;- RangeError: 'Fuel tank is depleted'</span></div></pre></td></tr></table></figure>
+<p>漂亮！那么用ES6类又如何呢？它的语法非常接近声明一个对象，除了我们加上了前缀<code>class Name</code>，其中<code>Name</code>是要创建类的类名。这里我们使用昨天讲过的<a href="https://ponyfoo.com/articles/es6-object-literal-features-in-depth#method-signatures" target="_blank" rel="external">method signature notation</a>这个简洁的语法来声明类的方法。<code>constructor</code>和ES5的构造器函数类似，所以你可以用它来初始化任何你期望实例拥有的变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span> () &#123;</div><div class="line">    <span class="keyword">this</span>.fuel = <span class="number">0</span></div><div class="line">    <span class="keyword">this</span>.distance = <span class="number">0</span></div><div class="line">  &#125;</div><div class="line">  move () &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.fuel &lt; <span class="number">1</span>) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">RangeError</span>(<span class="string">'Fuel tank is depleted'</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.fuel--</div><div class="line">    <span class="keyword">this</span>.distance += <span class="number">2</span></div><div class="line">  &#125;</div><div class="line">  addFuel () &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.fuel &gt;= <span class="number">60</span>) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">RangeError</span>(<span class="string">'Fuel tank is full'</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.fuel++</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以防你未注意到，并且由于某些说不清的原因我确实疏忽它了，类的属性或者方法间的<strong>逗号是不合法的</strong>，与对象字面量语法的逗号（仍然）是必需的相反。这种差异一定会使正在尝试决定要使用一个对象或是一个类的人感到头疼，但是上面这些不带逗号的代码看起来确实整洁了些。</p>
+<p>“类”通常会带有静态方法。以我们的老朋友<code>Array</code>为例，它除了拥有实例方法如<code>.filter</code>，<code>.reduce</code>和<code>.map</code>，还有静态方法，比如<code>Array.isArray</code>。在ES5的代码里，给我们的<code>Car</code>类添加这样的方法是相当容易的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.topSpeed = <span class="built_in">Math</span>.random()</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.isFaster = <span class="function"><span class="keyword">function</span> (<span class="params">left, right</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> left.topSpeed &gt; right.topSpeed</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在ES6的<code>class</code>语法里，我们可以在方法前加前缀<code>static</code>，类似<code>get</code>与<code>get</code>的语法。同样的，这只是在ES5上的语法糖，因此很容易将它编译为ES5的语法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span> () &#123;</div><div class="line">    <span class="keyword">this</span>.topSpeed = <span class="built_in">Math</span>.random()</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">static</span> isFaster (left, right) &#123;</div><div class="line">    <span class="keyword">return</span> left.topSpeed &gt; right.topSpeed</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ES6的<code>class</code>语法的一个优点在于你还可以使用<code>extends</code>关键字使从其他“类”“继承”变得更加容易。我们都知道消耗等量的汽油特斯拉汽车能开得更远，因此下面的代码展示了<code>Tesla extends Car</code>，并且“重写”（如果你曾经<a href="https://msdn.microsoft.com/en-us/library/aa645768(v=vs.71" target="_blank" rel="external">使用过C#</a>.aspx)那么你很可能已经很熟悉这个概念了）了<code>move</code>以达到更远的距离。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tesla</span> <span class="keyword">extends</span> <span class="title">Car</span> </span>&#123;</div><div class="line">  move () &#123;</div><div class="line">    <span class="keyword">super</span>.move()</div><div class="line">    <span class="keyword">this</span>.distance += <span class="number">4</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>特殊的关键字<code>extends</code>指定了我们继承的类<code>Car</code>——用C#的话说，它类似与<code>base</code>。它存在的理由是大多数情况下我们可以通过在派生类重新实现来重写一个方法，在我们的<code>Tesla</code>的例子里，我们也应调用父类的方法。这样我们就不必要在重新实现方法的时候将代码拷贝到派生类。每当一个基类变更的时候都要将代码拷贝到每一个派生类是非常糟糕的，它会使维护我们的代码变成一个噩梦。</p>
+<p>如果你做了如下操作，你将注意到由于<code>base.move()</code>特斯拉汽车移动了2个距离，这是每辆车都会做的，并且它还额外移动了4个距离因为<strong>特斯拉</strong>性能就是这么棒。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> car = <span class="keyword">new</span> Tesla()</div><div class="line">car.addFuel()</div><div class="line">car.move()</div><div class="line"><span class="built_in">console</span>.log(car.distance)</div><div class="line"><span class="comment">// &lt;- 6</span></div></pre></td></tr></table></figure>
+<p>你经常需要重写的方法是<code>constructor</code>。在里面你可以调用<code>super()</code>，传入基类需要的任何参数。特斯拉汽车的速度是两倍，因此我们就用翻倍的<code>speed</code>调用基类<code>Car</code>的构造函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span> (speed) &#123;</div><div class="line">    <span class="keyword">this</span>.speed = speed</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tesla</span> <span class="keyword">extends</span> <span class="title">Car</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span> (speed) &#123;</div><div class="line">    <span class="keyword">super</span>(speed * <span class="number">2</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>明天，我们将讨论<code>let</code>、<code>const</code>和<code>for...of...</code>的语法。到时再见。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>留言:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="https://twitter.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:yiqidaoshan@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 distums<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'distums';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

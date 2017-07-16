@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="MutationObserver API原文地址
+我最喜欢的网页技巧之一是使用CSS和JavaScript来检测DOM节点的插入和删除，祥见Detect DOM Node Insertions with JavaScript and CSS Animations。这个技巧和博文发布在我们没有适合的A">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="distums">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="MutationObserver API"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="WebSolar"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>MutationObserver API - WebSolar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88559975-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WELCOME & HAVE FUN</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/distums">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>MutationObserver API</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-03-18
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻译/">#翻译</a> <a href="/tags/WebApi/">#WebApi</a> <a href="/tags/MutationObserver/">#MutationObserver</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="MutationObserver-API"><a href="#MutationObserver-API" class="headerlink" title="MutationObserver API"></a>MutationObserver API</h1><p><a href="https://davidwalsh.name/mutationobserver-api" target="_blank" rel="external">原文地址</a></p>
+<p>我最喜欢的网页技巧之一是使用CSS和JavaScript来检测DOM节点的插入和删除，祥见<a href="https://davidwalsh.name/detect-node-insertion" target="_blank" rel="external">Detect DOM Node Insertions with JavaScript and CSS Animations</a>。这个技巧和博文发布在我们没有适合的API来检测这样的事件的时期。现在我们有了<a href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver" target="_blank" rel="external">MutationObserver</a>，一个用于高效检测许多节点操作的API。让我们来看一下！</p>
+<h2 id="基本的MutationObserver-API"><a href="#基本的MutationObserver-API" class="headerlink" title="基本的MutationObserver API"></a>基本的MutationObserver API</h2><p>对我来说<code>MutationObserver</code> API有点复杂，但下面是基本的设置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> observer = <span class="keyword">new</span> MutationObserver(<span class="function"><span class="keyword">function</span>(<span class="params">mutations</span>) </span>&#123;</div><div class="line">	<span class="comment">// 为了观察，让我们将改变输出到控制台，看看这都是怎么工作的</span></div><div class="line">	mutations.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">mutation</span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(mutation.type);</div><div class="line">	&#125;);    </div><div class="line">&#125;);</div><div class="line"> </div><div class="line"><span class="comment">// 通知我全部信息</span></div><div class="line"><span class="keyword">var</span> observerConfig = &#123;</div><div class="line">	<span class="attr">attributes</span>: <span class="literal">true</span>, </div><div class="line">	<span class="attr">childList</span>: <span class="literal">true</span>, </div><div class="line">	<span class="attr">characterData</span>: <span class="literal">true</span> </div><div class="line">&#125;;</div><div class="line"> </div><div class="line"><span class="comment">// 节点, config</span></div><div class="line"><span class="comment">// 在这种情况下我们将监听body及其子节点的全部改变</span></div><div class="line"><span class="keyword">var</span> targetNode = <span class="built_in">document</span>.body;</div><div class="line">observer.observe(targetNode, observerConfig);</div></pre></td></tr></table></figure>
+<p>为了使用<code>MutationObserver</code>需要有不少的代码，但可以分解为：</p>
+<ul>
+<li><p>使用一个处理抛出的任何事件的callback创建<code>MutationObserver</code>的一个实例</p>
+</li>
+<li><p>为<code>MutationObserver</code>创建一套设置</p>
+</li>
+<li><p>调用<code>MutationObserver</code>实例的<code>observe</code>方法，传入要监听的节点（和它的子节点）以及设置信息</p>
+</li>
+<li><p>当你想停止检测的时候，调用<code>disconnect</code></p>
+</li>
+</ul>
+<h2 id="MutationObserver设置"><a href="#MutationObserver设置" class="headerlink" title="MutationObserver设置"></a>MutationObserver设置</h2><p>MDN提供了<code>MutationObserver</code>可设置项的详细信息：</p>
+<ul>
+<li><p><code>childList</code>：如果需要检测目标节点的子节点（包含文本节点）的添加和移除则设置为true。</p>
+</li>
+<li><p><code>attributes</code>：如果需要检测目标节点属性的改变则设置为true。</p>
+</li>
+<li><p><code>characterData</code>：如果需要检测目标节点data值的改变则设置为true。</p>
+</li>
+<li><p><code>subtree</code>：如果要检测的不仅是目标节点，还包含其子孙节点则设置为true。</p>
+</li>
+<li><p><code>attributeOldValue</code>：如果<code>attributes</code>设置为true，并且需要记录目标节点属性改变前的值，则设为true。</p>
+</li>
+<li><p><code>characterDataOldValue</code>：如果<code>characterData</code>设置为true，并且需要记录目标节点data改变前的值，则设为true。</p>
+</li>
+<li><p><code>attributeFilter</code>：如果不需要检测全部属性的改变，则设置为属性localName（不包含命名空间）的一个数组。</p>
+</li>
+</ul>
+<p>这是相当多的当监听一个节点和/或其子节点需要注意的东西。</p>
+<h2 id="MutationRecord：MutationObserver处理结果"><a href="#MutationRecord：MutationObserver处理结果" class="headerlink" title="MutationRecord：MutationObserver处理结果"></a>MutationRecord：<code>MutationObserver</code>处理结果</h2><p>当检测到一个改变时的结果对象也详细记录了：</p>
+<ul>
+<li><p><code>type (String)</code>：如果是一个属性变化返回<code>attributes</code>，如果是一个CharacterData节点的变化返回<code>characterData</code>，如果是子节点的变化返回<code>childList</code>。</p>
+</li>
+<li><p><code>target (Node)</code>：根据type返回受改变影响的节点。对于<code>attributes</code>，返回属性改变的节点。对于<code>characterData</code>，返回CharacterData节点。对于<code>childList</code>，返回子节点改变了的那个节点。</p>
+</li>
+<li><p><code>addedNodes (NodeList)</code>：返回添加的节点。如果没有节点被添加了，则返回空的NodeList。</p>
+</li>
+<li><p><code>removedNodes (NodeList)</code>：返回删除的节点。如果没有节点被删除了，则返回空的NodeList。</p>
+</li>
+<li><p><code>previousSibling (Node)</code>：返回被添加或者删除节点的前一个兄弟节点，或者null。</p>
+</li>
+<li><p><code>nextSibling (Node)</code>：返回被添加或者删除节点的后一个兄弟节点，或者null。</p>
+</li>
+<li><p><code>attributeName (String)</code>：返回改变了的属性的localName，或者null。</p>
+</li>
+<li><p><code>attributeNamespace (String)</code>：返回改变了的属性的命名空间，或者null。</p>
+</li>
+<li><p><code>oldValue (String)</code>：返回值依赖于type。对于<code>attributes</code>，它是属性改变之前的值。对于<code>characterData</code>，它是节点data改变之前的值。对于<code>childList</code>，它是null。</p>
+</li>
+</ul>
+<p>好了。现在让我们看看<code>MutationObserver</code>的一些实际例子。</p>
+<h2 id="检测一个节点被添加了"><a href="#检测一个节点被添加了" class="headerlink" title="检测一个节点被添加了"></a>检测一个节点被添加了</h2><p>我的<a href="https://davidwalsh.name/detect-node-insertion" target="_blank" rel="external">Detect DOM Node Insertions with JavaScript and CSS Animations</a>博文的使用场景是检测添加了新节点，因此让我们新建一个检测节点插入的代码段：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 让我们添加一个样例节点来看看MutationRecord是什么样的</span></div><div class="line"><span class="comment">// document.body.appendChild(document.createElement('li'));</span></div><div class="line"></div><div class="line">&#123;</div><div class="line">	<span class="attr">addedNodes</span>: NodeList[<span class="number">1</span>], <span class="comment">// The added node is in this NodeList</span></div><div class="line">	attributeName: <span class="literal">null</span>,</div><div class="line">	<span class="attr">attributeNamespace</span>: <span class="literal">null</span>,</div><div class="line">	<span class="attr">nextSibling</span>: <span class="literal">null</span>,</div><div class="line">	<span class="attr">oldValue</span>: <span class="literal">null</span>,</div><div class="line">	<span class="attr">previousSibling</span>: text,</div><div class="line">	<span class="attr">removedNodes</span>: NodeList[<span class="number">0</span>],</div><div class="line">	<span class="attr">target</span>: body.document,</div><div class="line">	<span class="attr">type</span>: <span class="string">"childList"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>做为结果的MutationRecord显示了<code>addedNodes: NodeList[1]</code>，这意味着一个节点被添加到了DOM数的更深层次的某个位置。<code>type</code>的值是<code>childList</code>。</p>
+<h2 id="检测一个节点被移除了"><a href="#检测一个节点被移除了" class="headerlink" title="检测一个节点被移除了"></a>检测一个节点被移除了</h2><p>移除一个节点显示了如下的MutationRecord：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 现在让我们查看一个节点被移除时的MutationRecord</span></div><div class="line"><span class="comment">// document.body.removeChild(document.querySelector('div'))</span></div><div class="line"></div><div class="line">&#123;</div><div class="line">	<span class="attr">addedNodes</span>: NodeList[<span class="number">0</span>],</div><div class="line">	<span class="attr">attributeName</span>: <span class="literal">null</span>,</div><div class="line">	<span class="attr">attributeNamespace</span>: <span class="literal">null</span>,</div><div class="line">	<span class="attr">nextSibling</span>: text,</div><div class="line">	<span class="attr">oldValue</span>: <span class="literal">null</span>,</div><div class="line">	<span class="attr">previousSibling</span>: <span class="literal">null</span>,</div><div class="line">	<span class="attr">removedNodes</span>: NodeList[<span class="number">1</span>], <span class="comment">// The removed node is in this NodeList</span></div><div class="line">	target: body.document,</div><div class="line">	<span class="attr">type</span>: <span class="string">"childList"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个操作的<code>type</code>值同样是<code>childList</code>，但是现在<code>removeNodes</code>显示了<code>NodeList[1]</code>，一个包含被移除节点的<code>NodeList</code>。</p>
+<h2 id="检测属性变化"><a href="#检测属性变化" class="headerlink" title="检测属性变化"></a>检测属性变化</h2><p>如果一个元素的属性改变了，你将马上就知道。MutationRecord会显示：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// 属性变化了MutationRecord看起来会是怎样？</div><div class="line">// document.body.setAttribute('id', 'booooody');</div><div class="line"></div><div class="line">&#123;</div><div class="line">	addedNodes: NodeList[0],</div><div class="line">	attributeName: "id",</div><div class="line">	attributeNamespace: null,</div><div class="line">	nextSibling: null,</div><div class="line">	oldValue: null,</div><div class="line">	previousSibling: null,</div><div class="line">	removedNodes: NodeList[0],</div><div class="line">	target: body#booooody.document,</div><div class="line">	type: "attributes"</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同样注意<code>target</code>会指示是那个节点的属性改变了。<code>oldValue</code>值会显示属性的前一个值，而标准的<code>getAttribute</code>检查会给你新的属性值。</p>
+<h2 id="停止监听"><a href="#停止监听" class="headerlink" title="停止监听"></a>停止监听</h2><p>如果你希望编写最高效的app，你应仅仅在你需要监听的那段时间添加监听器，并且在结束后立马移除：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">observer.disconnect();</div></pre></td></tr></table></figure>
+<p><code>MutationObserver</code>的实例拥有一个<code>disconnect</code>方法用于停止监听。因为你的app可能会有非常非常多的DOM操作，你会希望拥有能力在用户与页面交互的时候停止监听。</p>
+<p><code>MutationObserver</code> API似乎有点繁琐了，但是它是相当强大的，并且提供了丰富的信息，而且是无hack的。Daniel Buchner原创的高明的“hack”提供了检测节点添加和移除兼容性更好的方式，但是如果可能应使用<code>MutationObserver</code>。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>留言:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="https://twitter.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:yiqidaoshan@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 distums<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'distums';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

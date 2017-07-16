@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="debugging the web
+本文整理在今年的ChromeDevSummit上Paul Irish分享的关于Chrome 55之后版本对dev tools所做的改进。原视频地址
+
+1. CallStack UI改进
+右边是新版样式，可以看到新版的样式比旧版的更简洁清晰。
+
+CallStack最">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="distums">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="debugging the web"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="WebSolar"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>debugging the web - WebSolar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88559975-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WELCOME & HAVE FUN</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/distums">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>debugging the web</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2016-12-11
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/debug/">#debug</a> <a href="/tags/Chrome-Dev-Summit-2016/">#Chrome Dev Summit 2016</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="debugging-the-web"><a href="#debugging-the-web" class="headerlink" title="debugging the web"></a>debugging the web</h1><blockquote>
+<p>本文整理在今年的<em>ChromeDevSummit</em>上<em>Paul Irish</em>分享的关于Chrome 55之后版本对dev tools所做的改进。<a href="https://www.youtube.com/watch?v=HF1luRD4Qmk&amp;index=13&amp;list=PLNYkxOF6rcIBTs2KPy1E6tIYaWoFcG3uj" target="_blank" rel="external">原视频地址</a></p>
+</blockquote>
+<h2 id="1-CallStack-UI改进"><a href="#1-CallStack-UI改进" class="headerlink" title="1. CallStack UI改进"></a>1. CallStack UI改进</h2><p><img src="./stack_compare.png" alt=""></p>
+<p>右边是新版样式，可以看到新版的样式比旧版的更简洁清晰。</p>
+<p><img src="./paused_reason.png" alt=""></p>
+<p>CallStack最上方现在会显示是什么原因导致代码中断执行了。</p>
+<h2 id="2-Console改进"><a href="#2-Console改进" class="headerlink" title="2. Console改进"></a>2. Console改进</h2><p>2.1 以前在console里面输多行代码是比较痛苦的，需要按住<code>shift+enter</code>来显示指定要换行。而现在，只要输入回车，console会根据输入的代码来判断是要执行还是换行。例如<img src="./console_enter.png" alt="">，输入回车，console会换行，而不是执行代码。而且现在console也包含了诸如语法高亮、括号匹配、多光标以及选中文本匹配等在文本编辑器中常见的功能。</p>
+<p>2.2 console现在支持取完数组元素的代码自动补全，而在以前，代码补全会在取数组元素后就会中断了。</p>
+<p><img src="./console_code_complete.png" alt=""></p>
+<h2 id="3-inline-breakpoints"><a href="#3-inline-breakpoints" class="headerlink" title="3. inline breakpoints"></a>3. inline breakpoints</h2><p><img src="./fetch_breakpoints.png" alt=""></p>
+<p>在以前，想要把断点断在then里面的函数是不可能的。</p>
+<p><img src="./fetch_inline_breakpoints.png" alt=""></p>
+<p>新版chrome则做了改进，如上所示，可以看到断点可以断在行内不同的地方。</p>
+<h2 id="4-nodejs调试"><a href="#4-nodejs调试" class="headerlink" title="4. nodejs调试"></a>4. nodejs调试</h2><p><img src="./node_debug.png" alt=""></p>
+<p>现在可在chrome里面调试node代码，而不需要借助<code>node-inspector</code>这样的库，只要输入<code>node --inspect index.js</code>，并拷贝输出的url粘贴到chrome浏览器里面就行了。不过这个功能有个麻烦的地方就是要拷贝这个url，新版的则支持从dev tools connect到nodejs进程，如下所示。</p>
+<p><img src="./node_debug_connect.png" alt=""></p>
+<h2 id="5-lighthouse"><a href="#5-lighthouse" class="headerlink" title="5. lighthouse"></a>5. <a href="https://github.com/GoogleChrome/lighthouse" target="_blank" rel="external">lighthouse</a></h2><p><a href="https://github.com/GoogleChrome/lighthouse" target="_blank" rel="external">lighthouse</a>指导你如何将一个web app改造为一个完美的progressive web app。更进一步，它还可以分析任何网站或者网页，除了搜集性能指标之外，还可以指出你可以应用的各种类型的最佳开发实践，以帮你把事情做的更好。</p>
+<p><img src="./lighthouse.png" alt=""></p>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><p>本文整理了Paul Irish分享的部分内容，其他像文件系统、CSS覆盖率和ServiceWorker调试则没整理到本文，可以看到google一直致力于提升开发者体验，帮助开发者更好地完成开发任务。强烈推荐有能力的同学去youtube上观看<a href="https://www.youtube.com/watch?v=HF1luRD4Qmk&amp;index=13&amp;list=PLNYkxOF6rcIBTs2KPy1E6tIYaWoFcG3uj" target="_blank" rel="external">原视频</a>。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>留言:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="https://twitter.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:yiqidaoshan@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 distums<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'distums';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="React Elements VS React Components
+原文地址
+
+几个月前我在Twitter发了个我认为是简单的问题：
+
+使我吃惊的不是围绕这个问题的共同的困惑，而是我收到的不准确回答的数量。
+
+实例/实例化渲染执行调用“使用它:)”
+
+产生困惑的首要原因是在JSX和React底层真">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="distums">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="React Elements VS React Components"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="WebSolar"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>React Elements VS React Components - WebSolar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88559975-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WELCOME & HAVE FUN</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/distums">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>React Elements VS React Components</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2016-12-21
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻译/">#翻译</a> <a href="/tags/react/">#react</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="React-Elements-VS-React-Components"><a href="#React-Elements-VS-React-Components" class="headerlink" title="React Elements VS React Components"></a>React Elements VS React Components</h1><blockquote>
+<p><a href="https://medium.freecodecamp.com/react-elements-vs-react-components-fdc776705880#.seeeu3k9g" target="_blank" rel="external">原文地址</a></p>
+</blockquote>
+<p>几个月前我在<a href="https://twitter.com/tylermcginnis33/status/771087982858113024" target="_blank" rel="external">Twitter</a>发了个我认为是简单的问题：</p>
+<p><img src="./react_elements_twitter.png" alt=""></p>
+<p>使我吃惊的不是围绕这个问题的共同的困惑，而是我收到的不准确回答的数量。</p>
+<blockquote>
+<p>实例/实例化<br>渲染<br>执行<br>调用<br>“使用它:)”</p>
+</blockquote>
+<p>产生困惑的首要原因是在JSX和React底层真正发生的存在一层常常未被触及的抽象层。为了回答这个问题，我们需要深入到这层抽象中。</p>
+<p>让我们从审查React的根本开始。</p>
+<h2 id="React究竟是什么"><a href="#React究竟是什么" class="headerlink" title="React究竟是什么"></a>React究竟是什么</h2><p>React是一个用于构建用户界面的库。无论React自身或者React生态看起来有多么复杂，这就是React的核心-构建UI。知道了这点，我们就能得到我们的第一个定义，<em>Element</em>。</p>
+<p>简单来说，<em>一个React element描述你想在屏幕上看到什么</em>。</p>
+<p>复杂点说，<em>一个React element是一个DOM节点的对象表示</em>。</p>
+<p>注意这里我用了‘描述’这个词。非常重要的是一个React element并不就是你在屏幕上实际看到的东西，反而，只是它的对象表示。这是有原因的：</p>
+<ol>
+<li><p>javascript对象是轻量的，React可以创建和销毁这些elements而不产生过多开销。</p>
+</li>
+<li><p>React可以分析这些对象，然后分析实际DOM元素，再然后当有改动产生时更新实际DOM元素。这能够带来一些性能方面的好处。</p>
+</li>
+</ol>
+<p>为了创建一个DOM节点的对象表示（即React element），我们可以使用React的<code>createElement</code>方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = React.createElement( </div><div class="line">  <span class="string">'div'</span>, </div><div class="line">  &#123;<span class="attr">id</span>: <span class="string">'login-btn'</span>&#125;, </div><div class="line">  <span class="string">'Login'</span></div><div class="line">)</div></pre></td></tr></table></figure>
+<p><code>createElement</code>接受3个参数：</p>
+<ol>
+<li><p>tag名字字符串（div,span,等等）</p>
+</li>
+<li><p>任何你想让该元素拥有的属性</p>
+</li>
+<li><p>内容或者元素的子元素——对于这个例子是文本“Login”</p>
+</li>
+</ol>
+<p>上面的<code>createElement</code>调用会返回一个如下形式的对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">  <span class="attr">type</span>: <span class="string">'div'</span>, </div><div class="line">  <span class="attr">props</span>: &#123; </div><div class="line">    <span class="attr">children</span>: <span class="string">'Login'</span>, </div><div class="line">    <span class="attr">id</span>: <span class="string">'login-btn'</span> </div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当它渲染到DOM中（使用ReactDOM.render）时，我们会得到一个新的看起来是这样的DOM节点：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'login-btn'</span>&gt;</span>Login<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>到目前为止，一切都好。学习React有趣的地方在于你被教授的第一个东西往往是components。“Components是React的构建区块”。</p>
+<p>然而，请注意我们以elements作为本篇博文的开始。因为，一旦你理解了elements，你将能平滑过渡到理解components。</p>
+<p><em>一个Component是一个接受可选输入并返回一个React element的函数或者类。</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Button</span> (<span class="params">&#123; onLogin &#125;</span>) </span>&#123; </div><div class="line">  <span class="keyword">return</span> React.createElement( </div><div class="line">    <span class="string">'div'</span>, </div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'login-btn'</span>, <span class="attr">onClick</span>: onLogin&#125;, </div><div class="line">    <span class="string">'Login'</span> </div><div class="line">  )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>按定义，我们有一个Button component接收onLogin输入并返回一个React element。值得注意的一件事是我们的Button component接收一个onLogin方法作为它的prop。为了把该方法一同传给我们的DOM元素的对象表示，我们将它传给了<code>createElement</code>方法的第二个参数，正如我们对id属性所做的一样。</p>
+<p>让我们再深入些。</p>
+<p>到这一刻，我们仅仅讨论了创建“type”属性为原生HTML元素（“span”,“div”,等等）的React element，但是你也可以传入其他React components作为<code>createElement</code>方法的第一个参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = React.createElement(</div><div class="line">  User, </div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">'Tyler McGinnis'</span>&#125;,</div><div class="line">  <span class="literal">null</span> </div><div class="line">)</div></pre></td></tr></table></figure>
+<p>然而，与一个HTML标签名不同，如果React看到第一个参数是一个类或者函数，接下来它将会给定相应的props去检查看看该类或者函数会渲染出什么elements。React会不断重复这个过程直到没有用一个类或者函数作为第一个参数的<code>creatElement</code>调用。让我们实际操作下看看。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Button</span> (<span class="params">&#123; addFriend &#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> React.createElement(</div><div class="line">    <span class="string">"button"</span>, </div><div class="line">    &#123; <span class="attr">onClick</span>: addFriend &#125;, </div><div class="line">    <span class="string">"Add Friend"</span> </div><div class="line">  ) </div><div class="line">&#125; </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">&#123; name, addFriend &#125;</span>) </span>&#123; </div><div class="line">  <span class="keyword">return</span> React.createElement(</div><div class="line">    <span class="string">"div"</span>, </div><div class="line">    <span class="literal">null</span>,</div><div class="line">    React.createElement( <span class="string">"p"</span>, <span class="literal">null</span>, name ),</div><div class="line">    React.createElement(Button, &#123; addFriend &#125;)</div><div class="line">  ) </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如上我们拥有两个component，一个Button和一个User。User对应DOM的对象表示将是一个包含两个子元素的“div”，一个包裹用户名的“p”节点和一个Button component。现在我们用返回值去替换createElement调用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Button</span> (<span class="params">&#123; addFriend &#125;</span>) </span>&#123; </div><div class="line">  <span class="keyword">return</span> &#123; </div><div class="line">    <span class="attr">type</span>: <span class="string">'button'</span>, </div><div class="line">    <span class="attr">props</span>: &#123; </div><div class="line">      <span class="attr">onClick</span>: addFriend, </div><div class="line">      <span class="attr">children</span>: <span class="string">'Add Friend'</span> </div><div class="line">    &#125; </div><div class="line">  &#125; </div><div class="line">&#125; </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span> (<span class="params">&#123; name, addFriend &#125;</span>) </span>&#123; </div><div class="line">  <span class="keyword">return</span> &#123; </div><div class="line">    <span class="attr">type</span>: <span class="string">'div'</span>, </div><div class="line">    <span class="attr">props</span>: &#123; </div><div class="line">      <span class="attr">children</span>: [&#123; </div><div class="line">        <span class="attr">type</span>: <span class="string">'p'</span>,</div><div class="line">        <span class="attr">props</span>: &#123; <span class="attr">children</span>: name &#125; </div><div class="line">      &#125;, </div><div class="line">      &#123; </div><div class="line">       <span class="attr">type</span>: Button, </div><div class="line">       <span class="attr">props</span>: &#123; addFriend &#125; </div><div class="line">      &#125;]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看到上面代码中包含了四种不同的type属性，“button”，“div”，“p”和Button。当React看到一个element的type属性是一个类或者函数（如上面的<code>“type: Button”</code>），它将会用相应的props去确定该component会返回什么elements。</p>
+<p>知道了这点，在这个过程的最后，React会拥有一个对象表示整个DOM树。在我们的例子中，它看起来是这样的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'div'</span>, </div><div class="line">  <span class="attr">props</span>: &#123;</div><div class="line">    <span class="attr">children</span>: [&#123;</div><div class="line">      <span class="attr">type</span>: <span class="string">'p'</span>,</div><div class="line">      <span class="attr">props</span>: &#123; <span class="attr">children</span>: <span class="string">'Tyler McGinnis'</span> &#125;</div><div class="line">    &#125;, </div><div class="line">    &#123; </div><div class="line">      <span class="attr">type</span>: <span class="string">'button'</span>, </div><div class="line">      <span class="attr">props</span>: &#123; </div><div class="line">        <span class="attr">onClick</span>: addFriend, </div><div class="line">        <span class="attr">children</span>: <span class="string">'Add Friend'</span></div><div class="line">      &#125;</div><div class="line">     &#125;]</div><div class="line">   &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个过程在React中叫做<code>reconciliation</code>，并且它会被<code>setState</code>和<code>ReactDOM.render</code>每一次调用触发。</p>
+<p>现在，让我们回过头看看导致这篇博文的最开始的问题：</p>
+<p><img src="./react_elements_twitter.png" alt=""></p>
+<p>这一刻，我们拥有了回答这个问题的全部知识，除了还有非常重要的一块内容。</p>
+<p>问题在于无论你使用React多长时间，你不会使用<code>React.createElement</code>来创建DOM节点的对象表示。取而代之，你很可能使用JSX。</p>
+<p>一开始我就写到：“产生困惑的首要原因是在JSX和React底层真正发生的存在一层常常未被触及的抽象层”。这个抽象层就是<em>JSX总是会被编译成<code>React.createElement</code>调用，通常是通过babel。</em></p>
+<p>让我们再看下前面的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Button</span> (<span class="params">&#123; addFriend &#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> React.createElement(</div><div class="line">    <span class="string">"button"</span>,</div><div class="line">    &#123; <span class="attr">onClick</span>: addFriend &#125;,</div><div class="line">    <span class="string">"Add Friend"</span> </div><div class="line">   )</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">&#123; name, addFriend &#125;</span>) </span>&#123; </div><div class="line">  <span class="keyword">return</span> React.createElement(</div><div class="line">    <span class="string">"div"</span>,</div><div class="line">    <span class="literal">null</span>,</div><div class="line">    React.createElement( <span class="string">"p"</span>, <span class="literal">null</span>, name),</div><div class="line">    React.createElement(Button, &#123; addFriend &#125;)</div><div class="line">  )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这些代码就是JSX编译后的代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Button</span> (<span class="params">&#123; addFriend &#125;</span>) </span>&#123; </div><div class="line">  <span class="keyword">return</span> ( </div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;addFriend&#125;</span>&gt;</span>Add Friend<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span> </div><div class="line">  )</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span> (<span class="params">&#123; name, addFriend &#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> ( </div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">     <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;name&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">Button</span> <span class="attr">addFriend</span>=<span class="string">&#123;addFriend&#125;/</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么最后，如果我们这么写我们的components：<code>&lt;Icon/&gt;</code>，那么我们如何称呼它？</p>
+<p>我们称它为“创建一个element”，因为它就是编译后的JSX所做的事情。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">React.createElement(Icon, null)</div></pre></td></tr></table></figure>
+<p>所有的这些例子，都是“创建一个React element”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">React.createElement(</div><div class="line">  &apos;div&apos;, </div><div class="line">  className: &apos;container&apos;, </div><div class="line">  &apos;Hello!&apos;</div><div class="line">)</div><div class="line"></div><div class="line">&lt;div className=&apos;container&apos;&gt;Hello!&lt;/div&gt; &lt;Hello /&gt;</div></pre></td></tr></table></figure>
+<p>感谢阅读！关于这个主题的更多内容可以阅读Dan Abramov（译注：redux作者）的文章<a href="https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html" target="_blank" rel="external">React Components, Instances, and Elements</a>。</p>
+<p>在Twitter上follow<a href="https://twitter.com/tylermcginnis33" target="_blank" rel="external">作者Tyler McGinnis</a></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>留言:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="https://twitter.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:yiqidaoshan@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 distums<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'distums';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

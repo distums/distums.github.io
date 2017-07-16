@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="ECMAScript的Observable提案原文地址
+在JavaScript，Observables很大程度上是通过诸如RxJS和Bacon.js这样的库流行起来的。JafarHusain，一个Netflix的技术总监，函数式编程的长期拥护者，同时也是TC39的成员，制定了一份提案用于在js语言核">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="distums">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="ECMAScript的Observable提案"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="WebSolar"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>ECMAScript的Observable提案 - WebSolar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88559975-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WELCOME & HAVE FUN</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/distums">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>ECMAScript的Observable提案</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-03-19
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻译/">#翻译</a> <a href="/tags/js/">#js</a> <a href="/tags/observable/">#observable</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="ECMAScript的Observable提案"><a href="#ECMAScript的Observable提案" class="headerlink" title="ECMAScript的Observable提案"></a>ECMAScript的Observable提案</h1><p><a href="https://ponyfoo.com/articles/observables-coming-to-ecmascript?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">原文地址</a></p>
+<p>在JavaScript，Observables很大程度上是通过诸如<a href="https://github.com/Reactive-Extensions/RxJS" target="_blank" rel="external">RxJS</a>和<a href="https://baconjs.github.io/" target="_blank" rel="external">Bacon.js</a>这样的库流行起来的。JafarHusain，一个Netflix的技术总监，函数式编程的长期拥护者，同时也是TC39的成员，制定了一份提案用于在js语言核心功能中引入Observables。在编写本文的时候，<a href="https://github.com/tc39/proposal-observable" target="_blank" rel="external">Observables提案</a>处于stage1状态，但已被标记为准备移到stage2状态。</p>
+<h2 id="Observable和observer-API"><a href="#Observable和observer-API" class="headerlink" title="Observable和observer API"></a>Observable和observer API</h2><p>在提案里，<code>Observable</code>成为了一个新的内置对象，用于处理事件流。<code>Observable</code>构造函数接收一个用于定于事件流的回调函数。在下面的例子里，我们的observable返回了一个仅包含值<code>1</code>和<code>2</code>的事件流。<code>observable.next</code>方法可以用于往观察流里面添加事件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Observable(<span class="function"><span class="params">observer</span> =&gt;</span> &#123;</div><div class="line">  observer.next(<span class="number">1</span>)</div><div class="line">  observer.next(<span class="number">2</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>我们可以使用<code>observer.error</code>来报告流处理过程中发生的错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Observable(<span class="function"><span class="params">observer</span> =&gt;</span> &#123;</div><div class="line">  observer.error(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">`Failed to stream events`</span>))</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>我们可以使用<code>observer.complete</code>来标识一个流已经处理结束。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Observable(<span class="function"><span class="params">observer</span> =&gt;</span> &#123;</div><div class="line">  observer.next(<span class="number">1</span>)</div><div class="line">  observer.next(<span class="number">2</span>)</div><div class="line">  observer.complete()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>传入<code>Observable</code>构造函数的回调可以返回一个清理函数来释放我们的可观察对象。这在需要移除事件监听器、清除timeout和类似的清理工作时会很有用。下面的这个可观察对象比上面那个来得有趣。它跟踪用户在屏幕上移动光标时鼠标相对于页面的位置，然后在这一过程中产生一个描述光标在页面位置的事件流。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mouseTracking</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Observable(<span class="function"><span class="params">observer</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">const</span> handler = <span class="function">(<span class="params">&#123; pageX, pageY &#125;</span>) =&gt;</span> &#123;</div><div class="line">      observer.next(&#123; <span class="attr">x</span>: pageX, <span class="attr">y</span>: pageY &#125;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">document</span>.body.addEventListener(<span class="string">`mousemove`</span>, handler)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span>  &#123;</div><div class="line">      <span class="built_in">document</span>.body.removeEventListener(<span class="string">`mousemove`</span>, handler)</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为了订阅一个可观察事件流，我们仅需调用可观察对象实例的<code>Observable#subscribe</code>方法。这么做将调用上例代码中传入<code>Observable</code>构造函数的回调函数，绑定事件监听器并且开始事件流。移动鼠标现在会引起事件被触发进事件流。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mouseTracking().subscribe(&#123;</div><div class="line">  next(&#123; x, y &#125;) &#123; <span class="built_in">console</span>.log(<span class="string">`New position: <span class="subst">$&#123; x &#125;</span>, <span class="subst">$&#123; y &#125;</span>`</span>) &#125;,</div><div class="line">  error(err) &#123; <span class="built_in">console</span>.log(<span class="string">`Error: <span class="subst">$&#123; err &#125;</span>`</span>) &#125;,</div><div class="line">  complete() &#123; <span class="built_in">console</span>.log(<span class="string">`Done!`</span>) &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="Subscription-unsubscribe"><a href="#Subscription-unsubscribe" class="headerlink" title="Subscription#unsubscribe"></a>Subscription#unsubscribe</h2><p><code>Observable#subscribe</code>返回一个可以让我们<code>unsubscribe</code>的对象，同时如果存在清理函数则执行它。当我们不在关注可观察流的事件时，我们可以取消订阅，并且让可观察对象清理自身。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> subscription = mouseTracking().subscribe(&#123;</div><div class="line">  next(&#123; x, y &#125;) &#123; <span class="built_in">console</span>.log(<span class="string">`New position: <span class="subst">$&#123; x &#125;</span>, <span class="subst">$&#123; y &#125;</span>`</span>) &#125;,</div><div class="line">  error(err) &#123; <span class="built_in">console</span>.log(<span class="string">`Error: <span class="subst">$&#123; err &#125;</span>`</span>) &#125;,</div><div class="line">  complete() &#123; <span class="built_in">console</span>.log(<span class="string">`Done!`</span>) &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">subscription.unsubscribe()</div></pre></td></tr></table></figure>
+<h2 id="Observable-of"><a href="#Observable-of" class="headerlink" title="Observable.of"></a>Observable.of</h2><p><code>Observable.of(...items)</code>是一个简单的静态工具函数，用于从提供的<code>items</code>新建一个<code>Observable</code>对象。然后当<code>Observable#subscribe</code>调用的时候会同步分发这些<code>items</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Observable.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>).subscribe(&#123;</div><div class="line">  next(item) &#123; <span class="built_in">console</span>.log(item) &#125;</div><div class="line">&#125;)</div><div class="line"><span class="comment">// &lt;- 1</span></div><div class="line"><span class="comment">// &lt;- 2</span></div><div class="line"><span class="comment">// &lt;- 3</span></div><div class="line"><span class="comment">// &lt;- 4</span></div></pre></td></tr></table></figure>
+<p>我们可以认为如下的代码是<code>Observable.of</code>的简化实现：对于给定的值我们返回一个同步流。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Observable.of = <span class="function">(<span class="params">...items</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Observable(<span class="function"><span class="params">observer</span> =&gt;</span> &#123;</div><div class="line">    items.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</div><div class="line">      observer.next(item)</div><div class="line">    &#125;)</div><div class="line">    observer.complete()</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Observable-from"><a href="#Observable-from" class="headerlink" title="Observable.from"></a>Observable.from</h2><p>这个静态方法将给定参数转为一个<code>Observable</code>对象。如果给定的<code>Object</code>拥有一个<code>Symbol.observable</code>，则返回调用该方法的结果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Observable</div><div class="line">  .from(&#123;</div><div class="line">    [<span class="built_in">Symbol</span>.observable]() &#123; <span class="keyword">return</span> Observable.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) &#125;</div><div class="line">  &#125;)</div><div class="line">  .subscribe(&#123;</div><div class="line">    next(item) &#123; <span class="built_in">console</span>.log(item) &#125;</div><div class="line">  &#125;)</div><div class="line"><span class="comment">// &lt;- 1</span></div><div class="line"><span class="comment">// &lt;- 2</span></div><div class="line"><span class="comment">// &lt;- 3</span></div></pre></td></tr></table></figure>
+<p>如果给定参数没有实现<code>Symbol.observable</code>方法，则假定该对象是可遍历的。这将返回该可遍历对象的一个同步<code>Observable</code>序列。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Observable</div><div class="line">  .from([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</div><div class="line">  .subscribe(&#123;</div><div class="line">    next(item) &#123; <span class="built_in">console</span>.log(item) &#125;</div><div class="line">  &#125;)</div><div class="line"><span class="comment">// &lt;- 1</span></div><div class="line"><span class="comment">// &lt;- 2</span></div><div class="line"><span class="comment">// &lt;- 3</span></div></pre></td></tr></table></figure>
+<p>在这种情形下，<code>Observable.from</code>与<code>Observable.of</code>类似。我们可以认为如下是<code>Observable.from</code>的简化实现。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Observable.from = <span class="function"><span class="params">value</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> value[<span class="built_in">Symbol</span>.observable] === <span class="string">`function`</span>) &#123;</div><div class="line">    <span class="keyword">return</span> value[<span class="built_in">Symbol</span>.observable]()</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> Observable.of(<span class="built_in">Array</span>.from(value))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>注意这个提案仍然处于早期阶段，但是它将为原生JavaScript级别的函数式编程打下基础。最终，它也许会提供<code>Observable#filter</code>或者<code>Observable#map</code>事件流的能力，允许我们只关注我们想要监听的那一类型事件。</p>
+<p>同时，随着我们持续关注这一模式，让规范自然而然地逐渐演化，用户群体也可以选择自己实现它。你可以在GitHub仓库上找到当前版本规范的一个<a href="https://github.com/tc39/proposal-observable/blob/0fa13995f372bab50de8cb5e8db59066ad08dd7a/src/Observable.js" target="_blank" rel="external">polyfill</a>，但是如果你想在浏览器的DevTools里把玩一下你得删掉<code>export</code>关键字。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>留言:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="https://twitter.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:yiqidaoshan@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 distums<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'distums';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

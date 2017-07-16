@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="用大气的鲜艳的gif图解释flex如何工作原文地址
+
+Flexbox承诺从纯CSS地狱（比如垂直居中）中拯救我们。
+好吧，Flexbox确实实现了它的这个目标。然而掌握这种新的思考模型会是具有挑战性的。
+因此让我们用动画来观察Flexbox如何工作，然后我们可以用它搭建更好的布局。
+Flexbox的">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="distums">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="用大气的鲜艳的gif图解释flex如何工作"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="WebSolar"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>用大气的鲜艳的gif图解释flex如何工作 - WebSolar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88559975-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WELCOME & HAVE FUN</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/distums">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>用大气的鲜艳的gif图解释flex如何工作</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-02-06
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻译/">#翻译</a> <a href="/tags/css/">#css</a> <a href="/tags/flex/">#flex</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="用大气的鲜艳的gif图解释flex如何工作"><a href="#用大气的鲜艳的gif图解释flex如何工作" class="headerlink" title="用大气的鲜艳的gif图解释flex如何工作"></a>用大气的鲜艳的gif图解释flex如何工作</h1><p><a href="https://medium.freecodecamp.com/an-animated-guide-to-flexbox-d280cf6afc35#.ja80b5m9j" target="_blank" rel="external">原文地址</a></p>
+<p><img src="./flex.png" alt=""></p>
+<p>Flexbox承诺从纯CSS地狱（比如垂直居中）中拯救我们。</p>
+<p>好吧，Flexbox确实实现了它的这个目标。然而掌握这种新的思考模型会是具有挑战性的。</p>
+<p>因此让我们用动画来观察Flexbox如何工作，然后我们可以用它搭建更好的布局。</p>
+<p>Flexbox的根本原则是使布局更加灵活和直观。</p>
+<p>为了达到这个目的，它让容器自己决定如何均匀分配子元素，包括元素本身的大小以及元素间的间距。</p>
+<p>在原理上这一切听起来都挺不错，让我们实际使用看看如何。</p>
+<p>在这篇文章，我们会探查5种最常见的Flexbox属性。我们将会探索它们做什么，如何使用以及最终看起来效果是怎样的。</p>
+<h2 id="属性-1：Display-Flex"><a href="#属性-1：Display-Flex" class="headerlink" title="属性#1：Display:Flex"></a>属性#1：Display:Flex</h2><p><img src="./display_block.gif" alt=""></p>
+<p>这里有一个灰色的作为容器的div，它包含四个颜色各异大小不一的div。目前，每个div都默认是<code>display:block</code>，因此每个方块都占据整行空间。</p>
+<p>为了开始尝试Flexbox，你需要把<strong>容器</strong>变成一个<strong>flex容器</strong>。这可以很容易用下面代码实现：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="./display_flex.gif" alt=""></p>
+<p>看起来并没有多大变化——现在这些div排成一行了，但这就是关键。在背后，你已经完成了非常强大的东西。<strong>你给了你的四个方块某个叫做<em>flex context</em>的东西</strong>。</p>
+<p>你现在可以用比传统CSS容易得多的方式在该context中给它们定位。</p>
+<h2 id="属性-2：Flex-Direction"><a href="#属性-2：Flex-Direction" class="headerlink" title="属性#2：Flex Direction"></a>属性#2：Flex Direction</h2><p>一个Flexbox容易有两个轴：主轴（Main Axis）和纵轴（Cross Axis），默认它们看起来是这样：</p>
+<p><img src="./flex_axes.png" alt=""></p>
+<p><strong>元素默认在主轴上从左到右排列的</strong>。这就是为什么一旦应用上<code>display:flex</code>，你的四个方块默认就水平排成一行了。</p>
+<p>因而<code>Flex-direction</code>让你决定如何转动主轴。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-direction</span>: column;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="./flex_direction.gif" alt=""></p>
+<p>注意这里有个重要区别：<code>flex-direction:column</code>并不会将你的方块从在主轴排列改为在纵轴排列。<strong>它将主轴本身从水平改为垂直的了</strong>。</p>
+<p>flex-direction属性还有其他的一些可选值：row-reverse和column-reverse。</p>
+<p><img src="./flex_direction_reverse.gif" alt=""></p>
+<h2 id="属性-3：Justify-Content"><a href="#属性-3：Justify-Content" class="headerlink" title="属性#3：Justify Content"></a>属性#3：Justify Content</h2><p><code>justify-content</code>控制元素在<strong>主轴</strong>上的对齐方式。</p>
+<p>这里，你将需要更深入地区分主轴和纵轴。首先，让我们回退到<code>flex-direction:row</code>。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-direction</span>: row;</div><div class="line">  <span class="attribute">justify-content</span>: flex-start;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你可以随意使用以下5个值来定义<em>justify-content</em>：</p>
+<ol>
+<li><p>Flex-start</p>
+</li>
+<li><p>Flex-end</p>
+</li>
+<li><p>Center</p>
+</li>
+<li><p>Space-between</p>
+</li>
+<li><p>Space-around</p>
+</li>
+</ol>
+<p><img src="./flex_justify_content.gif" alt=""></p>
+<p>Space-between和Space-around最不直观。<strong>Space-between给方块间同等距离的间距，但是首末方块与容器间不会有间距</strong>。</p>
+<p>Space-around的每个方块两边都会分配同等距离空间——这意味着<strong>最外边的方块与容器的间距是两个方块间距的一半</strong>（每个方块都占有同等距离的非重叠间距，因此距离加倍）。</p>
+<p>最后一点：记住<strong>justify-content对主轴起作用</strong>，而<strong>flex-direction会交换主轴</strong>。这在接下来将会变得重要。。。</p>
+<h2 id="属性-4：Align-Items"><a href="#属性-4：Align-Items" class="headerlink" title="属性#4：Align Items"></a>属性#4：Align Items</h2><p>如果你“搞定”justify-content，那么align-items将是轻而易举的事。</p>
+<p>正如justify-content作用在主轴上，<strong>align-items作用在纵轴上</strong>。</p>
+<p><img src="./flex_axes.png" alt=""></p>
+<p>我们将<em>flex-direction</em>重设为row，以让两条轴看起来和上图一致。</p>
+<p>然后，让我们研究align-items的值。</p>
+<ol>
+<li><p>flex-start</p>
+</li>
+<li><p>flex-end</p>
+</li>
+<li><p>center</p>
+</li>
+<li><p>stretch</p>
+</li>
+<li><p>baseline</p>
+</li>
+</ol>
+<p>前面3个并没什么特别新奇的，因为它们和<em>justify-content</em>的完全一致。</p>
+<p>然而后面两个确实有点不同。</p>
+<p>在stretch模式下元素会占据纵轴的全部空间，而baseline则会让元素按段落标签的底部对齐。</p>
+<p><img src="./align_items.gif" alt=""></p>
+<p>（注意对于<code>align-items:stretch</code>，我得把方块的高度设置为auto，否则height属性的值会覆盖stretch。）</p>
+<p>对于baseline，注意如果你移除了段落标签，那么方块会像下面一样的反而按底部对齐。</p>
+<p><img src="./align_items_baseline.png" alt=""></p>
+<p>为了更好地演示主轴和纵轴的区别，让我们组合justify-content和align-items看看它们在center模式下对于flex-direction的两个不同值会有何不同：</p>
+<p><img src="./align_items_directions.gif" alt=""></p>
+<p><strong>对row值，方块会沿着水平主轴排列。而对于column值，它们沿着垂直主轴堆叠</strong>。</p>
+<p>尽管在两种情况下方块都是水平和垂直居中的，但它们并不是可以互相替换的。</p>
+<h2 id="属性-5：Align-Self"><a href="#属性-5：Align-Self" class="headerlink" title="属性#5：Align Self"></a>属性#5：Align Self</h2><p><em>align-self</em>允许你手动调整特定元素的对齐方式。</p>
+<p>从根本上说它的值将align-items的值覆盖了。所有元素的align-self值都是相同的，默认为auto，在这种情况下元素会按容器指定的align-items的值对齐。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#container</span> &#123;</div><div class="line">  <span class="attribute">align-items</span>: flex-start;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* 只有这个方块会居中 */</span></div><div class="line"><span class="selector-class">.square</span><span class="selector-id">#one</span> &#123;</div><div class="line">  <span class="attribute">align-self</span>: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>让我们看看效果。我们将指定两个方块的<em>align-self</em>值，其它的则使用<code>align-items:center</code>和<code>flex-direction:row</code>。</p>
+<p><img src="./align_self.gif" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>尽管我们这里只是揭开了Flexbox的面纱，但这些属性对于你处理大多数常见的对齐应该是足够了——尤其是垂直居中你心爱的内容。</p>
+<p>如果你想看到更多Flexbox的gif图教程，或者这篇教程对你有帮助，请推荐一下这篇文章或者在下面评论。</p>
+<p>多谢阅读！</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>留言:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="https://twitter.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:yiqidaoshan@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 distums<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'distums';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

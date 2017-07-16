@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="用五颜六色的gif图进一步解释Flexbox如何工作原文地址
+上一次我们以基础的Flexbox属性：flex-direction，justify-content，align-items和align-self为开始介绍Flexbox。
+对于创建基本的布局这些指令足够强大了。但是一旦你开始用Flexbo">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="distums">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="用五颜六色的gif图进一步解释flexbox如何工作"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="WebSolar"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>用五颜六色的gif图进一步解释flexbox如何工作 - WebSolar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88559975-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WELCOME & HAVE FUN</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/distums">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>用五颜六色的gif图进一步解释flexbox如何工作</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-03-08
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻译/">#翻译</a> <a href="/tags/flexbox/">#flexbox</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="用五颜六色的gif图进一步解释Flexbox如何工作"><a href="#用五颜六色的gif图进一步解释Flexbox如何工作" class="headerlink" title="用五颜六色的gif图进一步解释Flexbox如何工作"></a>用五颜六色的gif图进一步解释Flexbox如何工作</h1><p><a href="https://medium.freecodecamp.com/even-more-about-how-flexbox-works-explained-in-big-colorful-animated-gifs-a5a74812b053#.urmm9dumo" target="_blank" rel="external">原文地址</a></p>
+<p><a href="https://distums.github.io/2017/02/06/how-flex-works-explained-with-big-colorful-animated-gifs/" target="_blank" rel="external">上一次</a>我们以基础的Flexbox属性：flex-direction，justify-content，align-items和align-self为开始介绍Flexbox。</p>
+<p>对于创建基本的布局这些指令足够强大了。但是一旦你开始用Flexbox来搭建网页，你需要更深入地了解它以将其潜力最大化。</p>
+<p>现在让我们深入了解Flexbox如何设置尺寸大小——以及你如何驾驭它以搭建响应式的优美的布局。</p>
+<h2 id="属性1：Flex-Basis"><a href="#属性1：Flex-Basis" class="headerlink" title="属性1：Flex-Basis"></a>属性1：Flex-Basis</h2><p>在<a href="https://distums.github.io/2017/02/06/how-flex-works-explained-with-big-colorful-animated-gifs/" target="_blank" rel="external">上一篇文章</a>，我们讨论的大多数是应用到容器元素上的属性。这次，我们将仅研究子元素上如何计算大小。</p>
+<p>在我看来，我们的第一个属性是诸多Flexbox教程中解释的最糟糕的属性之一。</p>
+<p>但是，不要担心，它事实上相当直观的。</p>
+<p><em>Flex-basis</em>控制一个元素的默认大小，即在被其他属性操纵之前（这部分将之后介绍）。</p>
+<p>下面的这张gif图表明它是能和<code>width</code>属性互换的：</p>
+<p><img src="./flex_basis_width.gif" alt=""></p>
+<p>但是使<code>flex-basis</code>与<code>width</code>不同的是它要搭配我们的老朋友flex轴：</p>
+<p><img src="./flex_axes.png" alt=""></p>
+<p><code>flex-basis</code>影响一个元素在主轴上的大小。</p>
+<p>让我们看看如果保持<code>flex-basis</code>不变，但是切换主轴的方向会发生什么：</p>
+<p><img src="./flex_basis_direction.gif" alt=""></p>
+<p>注意这个过程中我们从手动设置高度切换到手动设置宽度。因此<code>flex-basis</code>决定<code>width</code>或者<code>height</code>，取决于<code>flex-direction</code>的值。</p>
+<h2 id="属性2：Flex-Grow"><a href="#属性2：Flex-Grow" class="headerlink" title="属性2：Flex Grow"></a>属性2：Flex Grow</h2><p>让我们开始复杂点的内容。</p>
+<p>首先，我们将我们的小方块设置相同的宽度，120px：</p>
+<p><img src="./flex_grow_width.png" alt=""></p>
+<p>现在，当谈到名为<strong>flex-grow</strong>的属性，它默认为<strong>0</strong>。这意味着不允许这些方块通过增大来占据容器元素的空间。</p>
+<p>这是什么意思？好吧，让我们尝试将每个方块的<code>flex-grow</code>增加为<strong>1</strong>：</p>
+<p><img src="./flex_grow_1.png" alt=""></p>
+<p>这些方块共同占满了容器元素的全部宽度，而且它的空间均匀地分配给了每个方块。<code>flex-grow</code>覆写了<code>width</code>的值。</p>
+<p>但是，关于<code>flex-grow</code>令人困惑的地方是它的值的真正含义是什么。<strong>flex-grow: 1</strong>实际上意味着什么？</p>
+<p>好吧，下图是如果我们将每个方块的<code>flex-grow</code>都设为999看起是什么样：</p>
+<p><img src="./flex_grow_999.png" alt=""></p>
+<p>这。。。不是完全一样嘛。</p>
+<p>这是因为<code>flex-grow</code>不是一个绝对值——它是相对的。</p>
+<p>重要的是，不是<code>flex-grow</code>的值本身，而是相对于其他方块的值。</p>
+<p>如果我们将每个方块的<code>flex-grow</code>设置为1，然后调整方块#3的<code>flex-grow</code>，我们就可以看到变化了：</p>
+<p><img src="./flex_grow_adjust_3.gif" alt=""></p>
+<p>为了真正理解这里发生了什么，让我们快速介绍下一些（基础）数学知识。</p>
+<p>每个方块的<code>flex-grow</code>初始值都是1。如果我们将每个方块的<code>flex-grow</code>值加起来，总和是6。因此容器元素将被分成6个独立的部分。<strong>每个方块增大到填满容器元素可用空间的1/6</strong>。</p>
+<p>当我们将方块#3的<code>flex-grow</code>设置为2时，容器元素现在被分成7个不同的部分，因此<code>flex-grow</code>属性的总和是 1 + 1 + 2 + 1 + 1 + 1。</p>
+<p>接着方块#3占据其中的2/7空间，其他的都是1/7。</p>
+<p>当我们将方块#3的<code>flex-grow</code>设置为3时，容器元素被分成了8个部分（1 + 1 + 3 + 1 + 1 + 1），然后方块#3得到3/8，剩下的得到1/8。</p>
+<p>等等。。。</p>
+<p><strong>Flex-grow全部都是关于比例分配</strong>。如果我们给每个方块设置<code>flex-grow:4</code>，然后方块#3设置为<code>flex-grow:12</code>，我们将得到和分别设置1和3一样的结果：</p>
+<p><img src="./flex_grow_4_and_12.png" alt=""></p>
+<p>重要的是每个方块的<code>flex-grow</code>的值与其他方块的比例。</p>
+<p>最后一点，记住就和<code>flex-basis</code>一样，<code>flex-grow</code>应用在主轴上。我们的方块增加的仅仅是宽度，除非我们将<code>flex-direction</code>设置为column。</p>
+<h2 id="属性3：Flex-Shrink"><a href="#属性3：Flex-Shrink" class="headerlink" title="属性3：Flex Shrink"></a>属性3：Flex Shrink</h2><p>与<code>flex-grow</code>相反，<code>flex-shrink</code>决定一个方块被允许收缩到何种程度。</p>
+<p>它只在元素不得不收缩以适应容器时起作用——比如当容器太小的时候。</p>
+<p>它的主要用途是指定哪些元素可以收缩，而哪些则不行。每个方块的<code>flex-shrink</code>的默认值都是1——这意味着在盒空间缩小时它们都进行收缩。</p>
+<p>让我们看看实际效果。在下面的gif图中，每个方块的<code>flex-grow</code>值为1，因此它们填满了容器，以及<code>flex-shrink</code>值为1，允许它们进行收缩。</p>
+<p><img src="./flex_shrink_1.gif" alt=""></p>
+<p>现在让我们将方块#3的<code>flex-shrink</code>值设为0。这将禁止它进行收缩，因此尽管它会增大以适应容器，它会拒绝降至给它设置的120px宽度以下。</p>
+<p><img src="./flex_shrink_3.gif" alt=""></p>
+<p><code>flex-shrink</code>的默认值是1，这意味着你的元素会进行收缩除非你告诉它们不要收缩。</p>
+<p>同样的，<code>flex-shrink</code>也是关于比例分配。如果一个方块的<code>flex-shrink</code>值为6，并且其他方块的<code>flex-shrink</code>值为2，那么在空间压缩时前面那个方块缩的放速度会是其他方块的3倍。</p>
+<p>注意这里的措辞：拥有3倍<code>flex-shrink</code>值的方块会以3倍的速度收缩。<strong>但是这不意味着它会收缩宽度的1/3</strong>。</p>
+<p>稍等，我们将深入收缩和增大如何工作。但首先，我们先讨论最后一个属性，然后将所有东西整合在一起。</p>
+<h2 id="属性4：Flex"><a href="#属性4：Flex" class="headerlink" title="属性4：Flex"></a>属性4：Flex</h2><p><code>flex</code>是<code>flex-grow</code>，<code>flex-shrink</code>和<code>flex-basis</code>的简写——所有这些都整合在一起了。</p>
+<p>它的默认值是0(<code>flex-grow</code>)，1(<code>flex-shrink</code>)以及auto(<code>flex-basis</code>)。</p>
+<p>对于我们最后的例子，让我们简化为两个方块。</p>
+<p>以下是它们的属性：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.square</span><span class="selector-id">#one</span> &#123;</div><div class="line">  <span class="attribute">flex</span>: <span class="number">2</span> <span class="number">1</span> <span class="number">300px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.square</span><span class="selector-id">#two</span> &#123;</div><div class="line">  <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">2</span> <span class="number">300px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>它们两个拥有相同的<code>flex-basis</code>。这意味着如果有足够空间容纳它们（容器的宽度为600px再加上margin和padding的空间），它们将都是300px宽。</p>
+<p>但由于方块会扩大，方块#1（拥有更大的<code>flex-grow</code>）会以两倍速增大。当空间缩小时，方块#2（拥有更大的<code>flex-shrink</code>）会以两倍速收缩。</p>
+<p>现在将所有东西整合在一起：</p>
+<p><img src="./flex_flex.gif" alt=""></p>
+<h3 id="flex-shrink和flex-grow如何工作"><a href="#flex-shrink和flex-grow如何工作" class="headerlink" title="flex-shrink和flex-grow如何工作"></a><code>flex-shrink</code>和<code>flex-grow</code>如何工作</h3><p>这是可能引起困惑的地方：当方块#1增大时，它不会增大为方块#2的两倍。同样的，当方块#2收缩时，它不会收缩为方块#1的1/2——尽管它们的<code>flex-shrink</code>比例是2:1。</p>
+<p>不是它们的大小是2:1或者是1:2，而是它们收缩或者扩大的速度。</p>
+<h3 id="一些数学计算"><a href="#一些数学计算" class="headerlink" title="一些数学计算"></a>一些数学计算</h3><p>容器的初始宽度为640px。在除去容器两边的20px的padding后，留下了足够的空间让两个方块都恢复为<code>flex-basis</code>的宽度300px。</p>
+<p>当容器的宽度设置为430px时，我们失去了<strong>210px</strong>的空间。<code>flex-shrink</code>值为1的方块#1损失了<strong>70px</strong>，而值为2的方块#2则损失了<strong>140px</strong>。</p>
+<p>当容器宽度缩减到340px时，我们损失了<strong>300px</strong>的空间。方块#1损失了<strong>100px</strong>，而方块#2损失了<strong>200px</strong>。</p>
+<p>损失的空间根据方块各自的<code>flex-shrink</code>值的比例（2:1）分配。</p>
+<p>对<code>flex-grow</code>来说也是同样的道理。当容器增大为940px，我们的空间增加了<strong>300px</strong>，方块#1将额外获得<strong>200px</strong>，而方块#2额外获得<strong>100px</strong>。</p>
+<p><strong>当涉及到flex的属性，比例分配才是核心。</strong></p>
+<p><img src="./flex_flex_proportion.gif" alt=""></p>
+<p>在上面的gif图中，你可以看到方块如何根据比例来调整宽度，其中Δ值表示与<code>flex-basis</code>相差的值。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最后回顾一下：<code>flex-basis</code>控制一个元素在<code>flex-grow</code>和<code>flex-shrink</code>起作用前其在主轴上会有多大。<code>flex-grow</code>依据与兄弟元素的比例决定增大多少，而<code>flex-shrink</code>决定会收缩多少。</p>
+<p>我们还有一些Flexbox属性要讨论——请在接下来的几周保持关注。</p>
+<p>非常感谢阅读！这些文章收到了数量惊人的响应，我真的相当感谢每个花时间去阅读、回复、推荐以及分享的人！</p>
+<p>如果有特定的概念（Flexbox或者其他的）你希望用相似的文章去解释，回复我或者给我发推。你也可以在<a href="https://twitter.com/scottdomes" target="_blank" rel="external">Twitter</a>和<a href="https://medium.freecodecamp.com/even-more-about-how-flexbox-works-explained-in-big-colorful-animated-gifs-a5a74812b053#.inyxg2qa0" target="_blank" rel="external">Medium</a>跟随我。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>留言:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="https://twitter.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:yiqidaoshan@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 distums<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'distums';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

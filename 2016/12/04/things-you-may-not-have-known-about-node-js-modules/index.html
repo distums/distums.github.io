@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="你未必知道的Node.js模块知识
+原文地址
+
+我们在使用某样‘东西’的时候常常是一头扎入，而对它的一些优美之处却缺乏真正的理解。比如Node.js的模块系统就是这样，我们认为仅仅需要知道如何去使用require，而轻率的忽略了其它的一些闪光点。以下列举一些你一开始未必知道的模块知识…
+你可以检测模">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="distums">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="你未必知道的Node.js模块知识"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="WebSolar"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>你未必知道的Node.js模块知识 - WebSolar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88559975-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WELCOME & HAVE FUN</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/distums">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>你未必知道的Node.js模块知识</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2016-12-04
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻译/">#翻译</a> <a href="/tags/nodejs/">#nodejs</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="你未必知道的Node-js模块知识"><a href="#你未必知道的Node-js模块知识" class="headerlink" title="你未必知道的Node.js模块知识"></a>你未必知道的Node.js模块知识</h1><blockquote>
+<p><a href="https://medium.com/@trstringer/things-you-may-not-have-known-about-node-js-modules-6ef926e4f4ff#.x243o93tj" target="_blank" rel="external">原文地址</a></p>
+</blockquote>
+<p>我们在使用某样‘东西’的时候常常是一头扎入，而对它的一些优美之处却缺乏真正的理解。比如Node.js的模块系统就是这样，我们认为仅仅需要知道如何去使用<code>require</code>，而轻率的忽略了其它的一些闪光点。以下列举一些你一开始未必知道的模块知识…</p>
+<h2 id="你可以检测模块是被直接运行还是通过require引用的"><a href="#你可以检测模块是被直接运行还是通过require引用的" class="headerlink" title="你可以检测模块是被直接运行还是通过require引用的"></a>你可以检测模块是被直接运行还是通过require引用的</h2><p>这儿有Python开发吗？在Python经常可以看到（或者使用）一个简单的条件测试<code>__name__ == &#39;__main__&#39;</code>来判断模块是被直接运行的或者是被引用的。Node.js也有相似的特性，只是它的条件测试看起来是这样的<code>require.main === module</code>。以下是一个简单的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1.js</span></div><div class="line"><span class="keyword">if</span> (<span class="built_in">require</span>.main === <span class="built_in">module</span>) &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'1.js was run directly!'</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'1.js was require()\'d'</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">const</span> two = <span class="built_in">require</span>(<span class="string">'./2'</span>);</div><div class="line"><span class="comment">// 2.js</span></div><div class="line"><span class="keyword">if</span> (<span class="built_in">require</span>.main === <span class="built_in">module</span>) &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'2.js was run directly!'</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'2.js was require()\'d'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行<code>node 1</code>（你不需要包含文件拓展名，原因见下节）将得到如下输出：</p>
+<blockquote>
+<p>1.js was run directly!<br>2.js was require()’d</p>
+</blockquote>
+<p>这个功能在什么时候会有用呢？假设你在编写一个能够直接运行的模块（例如：<code>node your-module</code>），它拥有极好的功能且可能被其他模块引用了。这时你就可以用这个条件测试来决定是否在前一种情形下触发某些行为。</p>
+<h2 id="你不必指定’-js’（或者’-json’）拓展名"><a href="#你不必指定’-js’（或者’-json’）拓展名" class="headerlink" title="你不必指定’.js’（或者’.json’）拓展名"></a>你不必指定’.js’（或者’.json’）拓展名</h2><p>Node.js并不要求你在加载模块时指定文件的拓展名假设目标文件拥有如下拓展名：<code>js</code>、<code>json</code>或者<code>node</code>（*.node表示二进制插件）。这是完全没问题的，我们不需要指定<code>require(&#39;./2.js&#39;)</code>而可以做一些简化：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1.js</span></div><div class="line"><span class="keyword">const</span> two = <span class="built_in">require</span>(<span class="string">'./2'</span>);</div><div class="line"><span class="built_in">console</span>.log(two.message);</div><div class="line"><span class="comment">// 2.js</span></div><div class="line">exports.message = <span class="string">"hi from 2.js!"</span>;</div></pre></td></tr></table></figure>
+<p>以上代码会如预期输出消息<code>hi from 2.js!</code>。但是如果有多个文件名相同但是拓展名不同的模块时会发生什么？换句话说，存在与<code>1.js</code>同级的且内容如下的文件<code>2.json</code>时：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"message"</span>: <span class="string">"hi from 2.json!"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么<code>require(&#39;./2&#39;)</code>调用会先查找<code>2.js</code>文件。如果找到了就使用这个文件，否则它就会尝试去查找文件<code>2.json</code>。</p>
+<h2 id="你可以加载一个目录"><a href="#你可以加载一个目录" class="headerlink" title="你可以加载一个目录"></a>你可以加载一个目录</h2><p>我注意到这点是被广泛采用的。事实上，Node.js对此完全支持，只要该目录要么显式在<code>package.json</code>文件的<code>main</code>属性指定要加载的文件，要么包含一个index.\<ext\>（<code>etc</code>为默认支持加载的三个拓展名<code>js</code>、<code>json</code>或者<code>node</code>之一）文件。以下是一个例子：</ext\></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1.js</span></div><div class="line"><span class="keyword">const</span> dirIndex = <span class="built_in">require</span>(<span class="string">'./mydir'</span>);</div><div class="line"><span class="comment">// mydir/index.js</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'hello from mydir/index.js!'</span>);</div></pre></td></tr></table></figure>
+<p>运行<code>node 1</code>会如预期输出<code>hello from mydir/index.js!</code>。这是因为我们加载了一个目录，node.js在发现该目录存在一个<code>index.js</code>然后加载了它。</p>
+<p>这在使用者不需要知道或者根本不关注目录结构时提供了极大的便利以及代码可读性，目录本身就能作为某种形式上的代码容器。</p>
+<h2 id="引用过的模块会被缓存"><a href="#引用过的模块会被缓存" class="headerlink" title="引用过的模块会被缓存"></a>引用过的模块会被缓存</h2><p>猜下如下代码会输出什么？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1.js</span></div><div class="line"><span class="keyword">const</span> two = <span class="built_in">require</span>(<span class="string">'./2'</span>);</div><div class="line"><span class="built_in">console</span>.log(two.myDateTime);</div><div class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> twoAgain = <span class="built_in">require</span>(<span class="string">'./2'</span>);</div><div class="line">  <span class="built_in">console</span>.log(twoAgain.myDateTime);</div><div class="line">&#125;, <span class="number">2000</span>);</div><div class="line"><span class="comment">// 2.js</span></div><div class="line">exports.myDateTime = <span class="built_in">Date</span>().toLocaleString();</div></pre></td></tr></table></figure>
+<p>如果你推测输出的日期/时间字符串是相同的，那么恭喜你你是正确的！为什么会这样？node.js应该加载了那个模块两次，2秒间隔前后各一次，对吗？不！原因是node.js会缓存已经加载过的模块，正如我们所看到的。<code>Date().toLocaleString()</code>只会执行一次，然后node.js就将它缓存了并给<code>two.myDateTime</code>赋值，同样的值也赋给了接下来的<code>twoAgain.myDateTime</code>。</p>
+<h2 id="exports只是module-exports的引用"><a href="#exports只是module-exports的引用" class="headerlink" title="exports只是module.exports的引用"></a>exports只是module.exports的引用</h2><p>我把这条保留到了最后是因为我认为它是一堆困惑的根源。我发现遍地都是这样的疑问：“什么时候该使用<code>exports</code>，什么时候使用<code>module.exports</code>？”。然而一旦你发现<code>exports</code>不过是<code>module.exports</code>的引用这个简单的事实，你就不需要再去刻意记住什么或者再去琢磨它。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">`exports is module.exports is a <span class="subst">$&#123;exports === <span class="built_in">module</span>.exports&#125;</span> statement`</span>);</div></pre></td></tr></table></figure>
+<p>运行它，你将得到一条事实：<code>exports is module.exports is a true statement</code>。还不足够说服你吗？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">exports.message = <span class="string">'hello world'</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">`exports.message is <span class="subst">$&#123;exports.message&#125;</span>`</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">`module.exports.message is <span class="subst">$&#123;<span class="built_in">module</span>.exports.message&#125;</span>`</span>);</div><div class="line"><span class="built_in">module</span>.exports.anotherMessage = <span class="string">'hey universe'</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">`exports.anotherMessage is <span class="subst">$&#123;exports.anotherMessage&#125;</span>`</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">`module.exports.anotherMessage is <span class="subst">$&#123;<span class="built_in">module</span>.exports.anotherMessage&#125;</span>`</span>);</div></pre></td></tr></table></figure>
+<p>请注意了，你将看到如下输入：</p>
+<blockquote>
+<p>exports.message is hello world<br>module.exports.message is hello world<br>exports.anotherMessage is hey universe<br>module.exports.anotherMessage is hey universe</p>
+</blockquote>
+<p>但是，这儿有个陷阱。由于<code>exports</code>仅仅是<code>module.exports</code>的引用，若是你做了<code>exports = ...</code>你将碰到预期外的行为。此刻，<code>exports</code>不再指向<code>module.exports</code>了，而这也肯定不是你想要的结果。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>掩盖看似简单的东西是如此容易及令人舒适。但是，花费时间去调查即使是最简单的事物的每个角落也是值得的，你会发现它们拥有一些你不曾知道的不可思议的且炫酷的特性！希望我的这篇博文阐明了Node.js模块系统的其中一些特性。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>留言:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="https://twitter.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:yiqidaoshan@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 distums<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'distums';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

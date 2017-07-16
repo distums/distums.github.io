@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="5分钟介绍styled-components原文地址
+
+CSS是怪异的，你可以用15分钟学习它的基础知识，但是找到一个好的方式来组织你的样式会花费你数年的时间。
+这部分源于语言本身的怪癖。跳出盒子外去看，CSS本身是相当受限的，没有变量、循环和函数。另一方面，它是相当纵容的，你可以给元素、class">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="distums">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="5分钟介绍styled-components"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="WebSolar"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>5分钟介绍styled-components - WebSolar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88559975-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WELCOME & HAVE FUN</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/distums">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>5分钟介绍styled-components</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-02-05
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻译/">#翻译</a> <a href="/tags/styled-components/">#styled-components</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="5分钟介绍styled-components"><a href="#5分钟介绍styled-components" class="headerlink" title="5分钟介绍styled-components"></a>5分钟介绍styled-components</h1><p><a href="https://medium.freecodecamp.com/a-5-minute-intro-to-styled-components-41f40eb7cd55#.c4cvw2yv6" target="_blank" rel="external">原文地址</a></p>
+<p><img src="./styled_components.png" alt=""></p>
+<p>CSS是怪异的，你可以用15分钟学习它的基础知识，但是找到一个好的方式来组织你的样式会花费你数年的时间。</p>
+<p>这部分源于语言本身的怪癖。跳出盒子外去看，CSS本身是相当受限的，没有变量、循环和函数。另一方面，它是相当纵容的，你可以给元素、class、ID或者是它们的任何组合添加样式。</p>
+<h2 id="混乱的样式表"><a href="#混乱的样式表" class="headerlink" title="混乱的样式表"></a>混乱的样式表</h2><p> 正如你可能已经经历过的，这中纵容通常会带来混乱。尽管同时有预处理器，比如SASS和LESS，添加相当多有用的特性，它们仍然没能有效地阻止CSS的无组织状态。</p>
+<p>结构组织上的工作被留给了像<a href="http://getbem.com/" target="_blank" rel="external">BEM</a>这样的方法论。它们是有用的，但却完全是可选的，并且没办法在语言或者工具层面上强制使用。</p>
+<h2 id="CSS的新潮流"><a href="#CSS的新潮流" class="headerlink" title="CSS的新潮流"></a>CSS的新潮流</h2><p>快进几年，一波基于Javascript的工具通过改变编程CSS的方式尝试从根本上解决这些问题。</p>
+<p><a href="https://github.com/styled-components/styled-components" target="_blank" rel="external">Styled Components</a>是其中之一，并且它以其mix of innovation and familiarity的特点快速吸引了很多关注。所以如果你使用React（如果你没有，查看<a href="https://medium.freecodecamp.com/a-study-plan-to-cure-javascript-fatigue-8ad3a54f2eb1#.ywumhbri2" target="_blank" rel="external">我的Javascript学习计划</a>和<a href="https://medium.freecodecamp.com/the-5-things-you-need-to-know-to-understand-react-a1dbd5d114a3#.glfezy2n4" target="_blank" rel="external">intro to React</a>），那么绝对值得看一下这个新的CSS替代品。</p>
+<p>最近我用它<a href="http://sachagreif.com/" target="_blank" rel="external">重新设计了我的个人网站</a>，所以我非常想分享下在这个过程中我学到的一些东西。</p>
+<h2 id="带有样式的组件"><a href="#带有样式的组件" class="headerlink" title="带有样式的组件"></a>带有样式的组件</h2><p>关于Styled Components你需要首要理解的东西是它的名字应该字面上去理解。你不再给通过class或者html标签给html元素或者组件加样式：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;h1 className="title"&gt;Hello World&lt;/h1&gt;</div><div class="line"></div><div class="line">h1.title&#123;</div><div class="line">  font-size: 1.5em;</div><div class="line">  color: purple;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>取而代之，你通过定义<em>styled components</em>来处理它们自身包装的样式。然后它们就可以在后续的代码中自由使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> styled <span class="keyword">from</span> <span class="string">'styled-components'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Title = styled.h1<span class="string">`</span></div><div class="line">  font-size: 1.5em;</div><div class="line">  color: purple;</div><div class="line">`;</div><div class="line"></div><div class="line">&lt;Title&gt;Hello World&lt;/Title&gt;</div></pre></td></tr></table></figure>
+<p>看起来变化非常微小，并且事实上两段代码语法上是非常接近的。但关键的区别在于样式现在是组件的<em>一部分</em>。</p>
+<p>换句话说，我们取缔了css class作为创建组件和它的样式的中间步骤。</p>
+<p>正如styled-components共同创始人Max Stoiber所说：</p>
+<p>“<code>styled-components</code>的基本思想是通过移除样式和组件的配对来强制使用最佳实践。”</p>
+<h2 id="降低复杂度"><a href="#降低复杂度" class="headerlink" title="降低复杂度"></a>降低复杂度</h2><p>这一开始看起来是反直觉的，因为使用CSS的关键就在于通过引进中间的class层，将样式和内容解耦，而不是直接给html元素加样式（还记得<code>&lt;font&gt;</code>标签吗？）。</p>
+<p>但是这层解耦也增加了许多复杂性，并且也有这样的争论：与使用CSS对比，一门“真正的”编程语言比如Javascript能更好地驾驭这些复杂性。</p>
+<h2 id="Props优先于Classes"><a href="#Props优先于Classes" class="headerlink" title="Props优先于Classes"></a>Props优先于Classes</h2><p>为了保持这个无-class的哲学，styled-components在定制组件行为的时候优先使用props而不是class。所以不是：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;h1 className="title primary"&gt;Hello World&lt;/h1&gt; // will be blue</div><div class="line"></div><div class="line">h1.title&#123;</div><div class="line">  font-size: 1.5em;</div><div class="line">  color: purple;</div><div class="line">  </div><div class="line">  &amp;.primary&#123;</div><div class="line">    color: blue;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而是这么写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Title = styled.h1<span class="string">`</span></div><div class="line">  font-size: 1.5em;</div><div class="line">  color: <span class="subst">$&#123;props =&gt; props.primary ? <span class="string">'blue'</span> : <span class="string">'purple'</span>&#125;</span>;</div><div class="line">`;</div><div class="line"></div><div class="line">&lt;Title primary&gt;Hello World&lt;/Title&gt; <span class="comment">// will be blue</span></div></pre></td></tr></table></figure>
+<p>如你所见，通过剥离所有与CSS和html相关的实现细节，styled-components让你保持你的React组件的整洁。</p>
+<p>也就是说，styled-components的CSS还是CSS代码。所以如下的代码还是有效的代码（尽管有些不符合习惯）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Title = styled.h1<span class="string">`</span></div><div class="line">  font-size: 1.5em;</div><div class="line">  color: purple;</div><div class="line">  </div><div class="line">  &amp;.primary&#123;</div><div class="line">    color: blue;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line">&lt;Title className="primary"&gt;Hello World&lt;/Title&gt; <span class="comment">// will be blue</span></div></pre></td></tr></table></figure>
+<p>这个特性使styled-components非常容易使用：一旦有疑问，你总是可以回退到你已经知道的东西上。</p>
+<h2 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h2><p>值得一提的是styled-components现在还是一个年轻的项目，并且有一些特性还不完全支持。比如，你想在<a href="https://github.com/styled-components/styled-components/issues/142" target="_blank" rel="external">父组件上给子组件加样式</a>，你暂时将不得不依赖于CSS的class（除非等到styled-components v2版本出来）。</p>
+<p>现在也没有“官方的”的方式<a href="https://github.com/styled-components/styled-components/issues/124" target="_blank" rel="external">预先在服务端渲染CSS</a>，尽管通过手动注入样式这是完全可行的。</p>
+<p>并且styled-components会生成随机的class名字这一事实会导致你用浏览器的开发工具找出样式最初定位的位置变得困难。</p>
+<p>但鼓舞人心的是，styled-components核心团队意识到这些问题，而且努力地一个接一个去修复它们。<a href="https://github.com/styled-components/styled-components/tree/v2" target="_blank" rel="external">V2版本马上就要出来了</a>，对此我非常期待。</p>
+<h2 id="学习更多"><a href="#学习更多" class="headerlink" title="学习更多"></a>学习更多</h2><p>我这里的目标不是详细解释styled-components如何工作，而是给你一个鸟瞰让你自己决定是否值得一试。</p>
+<p>如果我成功地引起你的兴趣，你可以通过以下地方学习更多关于styled-components的东西：</p>
+<ul>
+<li><p>Max Stoiber最近在<a href="https://www.smashingmagazine.com/2017/01/styled-components-enforcing-best-practices-component-based-systems/" target="_blank" rel="external">Smashing Magazine</a>上发表了一篇关于styled-components缘由的文章。</p>
+</li>
+<li><p><a href="https://github.com/styled-components/styled-components" target="_blank" rel="external">styled-components项目</a>本身拥有丰富的文档</p>
+</li>
+<li><p><a href="https://medium.com/@jamiedixon/styled-components-production-patterns-c22e24b1d896#.39mnivn2q" target="_blank" rel="external">Jamie Dixon的这篇文章</a>概述了转到styled-components的一些好处</p>
+</li>
+<li><p>如果你想学习这个库是如何实现的，你可以看下Max的<a href="http://mxstbr.blog/2016/11/styled-components-magic-explained/" target="_blank" rel="external">这篇文章</a></p>
+</li>
+</ul>
+<p>并且如果你想更进一步，你还可以看下<a href="https://github.com/threepointone/glamor" target="_blank" rel="external">Glamor</a>，CSS新浪潮的另一个实现。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>留言:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="https://twitter.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:yiqidaoshan@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 distums<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'distums';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

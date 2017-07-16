@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="如何使用类而能够在晚上安然入睡
+原文地址
+
+当前JS社区有个观点正在增长，那就是ES6的类不够炫酷：
+
+类模糊了JS基于原型继承的本质
+
+类鼓励使用继承但你应该优先考虑使用组合
+
+类会使你局限于最初想到的坏的设计
+
+
+我认为js社区关注使用类和继承所带来的问题是很好的，但我也担忧初学者会对类一方面是">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="distums">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="如何使用类而能够在晚上安然入睡"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="WebSolar"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>如何使用类而能够在晚上安然入睡 - WebSolar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88559975-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WELCOME & HAVE FUN</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/distums">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>如何使用类而能够在晚上安然入睡</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-01-04
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻译/">#翻译</a> <a href="/tags/js/">#js</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="如何使用类而能够在晚上安然入睡"><a href="#如何使用类而能够在晚上安然入睡" class="headerlink" title="如何使用类而能够在晚上安然入睡"></a>如何使用类而能够在晚上安然入睡</h1><blockquote>
+<p><a href="https://medium.com/@dan_abramov/how-to-use-classes-and-sleep-at-night-9af8de78ccb4#.8x6luasmc" target="_blank" rel="external">原文地址</a></p>
+</blockquote>
+<p>当前JS社区有个观点正在增长，那就是ES6的类不够<a href="https://github.com/joshburgess/not-awesome-es6-classes/" target="_blank" rel="external">炫酷</a>：</p>
+<ul>
+<li><p>类模糊了JS基于原型继承的本质</p>
+</li>
+<li><p>类鼓励使用继承但你应该优先考虑使用组合</p>
+</li>
+<li><p>类会使你局限于最初想到的坏的设计</p>
+</li>
+</ul>
+<p>我认为js社区关注使用类和继承所带来的问题是很好的，但我也担忧初学者会对类一方面是“不好的”，一方面它又被加到语言中感到困惑。更令人困惑的是一些库，特别是React，ES6的类在它的文档中随处可见。难道React有意在跟随“坏的实践”？</p>
+<p>我认为我们正处于这样一个怪异的过渡时期：对类的广泛使用是无可避免的恶，因为它们起了限制作用。这当然好过每学一个框架就要学习它自带的新的特殊类系统，而且它们每个都以mixin的形式各自实现了自己的多继承。</p>
+<p>如果你喜欢函数式编程，你可能看到了从专有类系统转到“剥离的”ES6类（没有mixin，没有自动绑定，等等）如何使我们更进一步接近函数式解决方案。</p>
+<p>同时，下列是如何使用类而能够在晚上安然入睡的建议：</p>
+<ul>
+<li><p><em>限制使用类作为你的公共API</em>。（当然导出一个React Component是个例外因为它们并不是被直接使用。）你总是可以使用工厂函数来隐藏你的类。如果你暴露了它们，其他人会以各种对你来说讲不通的方式来继承它们，但你却有可能在未来破坏了继承类。避免破坏其他人的类是困难的，因为他们可能已经使用了你打算在未来版本使用的方法名字，或者他们可能使用了你的私有状态，或者他们可能在你的类实例里面嵌入了他们自己的状态，再有他们可能重写了你的方法但没有调用<code>super</code>，幸运的话这可能可以工作一段时间，但未来肯定会崩溃。这就是说，当基类和用户的继承类不存在来回往复地交互时，比如在React Component的情况下，导出一个基类作为API就是一个非常合适的选择。</p>
+</li>
+<li><p><em>不要继承超过一次</em>。继承作为一种捷径可以是方便的，而且继承一次是OK的，但不要继承更深。继承的问题在于派生类有太多权利访问继承层级上的每个基类的实现细节，反之亦然。当需求变更时，重构一个类层级结构会是如此之难，伴随着追溯过时的需求，它会变成一个烫手山芋。作为创建类层级的替代，考虑创建一些工厂函数。它们可以互相调用形成一条链，整合彼此的行为。你也可以要求“基”工厂函数接受一个“策略”对象来调整行为，并且用另一些工厂函数来提供这个对象。无论你选择何种方式，重要的部分是保持每一步的输入和输出是明确的。“你需要重新一个方法”不是一个明确的API，并且也很难设计好，但“你需要提供一个函数作为参数”就是明确的，并且能帮助你思考它。</p>
+</li>
+<li><p><em>不要在方法里面使用<code>super</code>调用</em>。如果你在派生类重写了一个方法，那么就完全重写它。追踪一连串的<code>super</code>调用就像调查一系列被反派藏在世界各地的记录。这仅仅是在看其他人干这个事的时候才显得有趣。假若你确实需要转化<code>super</code>调用的结果呢，或者是在做了其它什么操作之前或者之后转化呢？注意上一点：将你的类转换成一系列工厂函数，并且保持它们之间的关系明确。当你的所有工具仅仅是参数和返回值时，权衡职责会更加容易。处于中间的函数可以有与“顶层”和“底层”函数不同的接口，并且粒度更细。类并不容易提供类型的机制，因为你不能指定一个方法“仅仅供基类使用”或者“仅仅供派生类使用”，但是函数组合可以很自然地做到。</p>
+</li>
+<li><p><em>不要期望其他人使用你的类</em>。即使你选择提供类作为公开的API，也要优先考虑接受鸭子类型的输入。不是做<code>instanceof</code>类型检查，而是断言你要用的方法的存在性，并且相信用户做了正确的事。这将使用户拓展和后续调整更容易，同时也消除了在iframe里面和不同JavaScript执行环境里面的问题。</p>
+</li>
+<li><p><em>学习函数式编程</em>。它将帮助你不要以类的方式思考，这样你就不会不得不去使用它们尽管你知道它们的缺陷。</p>
+</li>
+</ul>
+<h2 id="那么React-Components怎样呢？"><a href="#那么React-Components怎样呢？" class="headerlink" title="那么React Components怎样呢？"></a>那么React Components怎样呢？</h2><p>我希望上面的原则展示了为什么下面代码是个糟糕的主意。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseButton</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  componentDidMount() &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'hey'</span>);</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>&#123;this.getContent()&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedButton</span> <span class="keyword">extends</span> <span class="title">BaseButton</span> </span>&#123;</div><div class="line">  componentDidMount() &#123;</div><div class="line">    <span class="keyword">super</span>.componentDidMount();</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'ho'</span>);</div><div class="line">  &#125;</div><div class="line">  getContent() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'I am red'</span>;</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">'red'</span>&gt;</span></span></div><div class="line">        &#123;super.render()&#125;</div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但我认为下面的代码是可以接受的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Button</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  componentDidMount() &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'hey'</span>);</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;this.props.color&#125;</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>&#123;this.props.children&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedButton</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  componentDidMount() &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'ho'</span>);</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">color</span>=<span class="string">'red'</span>&gt;</span></span></div><div class="line">        I am red</div><div class="line">      <span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>是的，我们使用了令人敬畏的<code>class</code>关键字，但我们并没创建继承层级，因为我们始终从<code>Component</code>拓展。如果你希望，你甚至可以对此写一些lint规则。在上面的代码里面避免使用<code>class</code>是完全没必要的，这并不是什么大的问题。</p>
+<p>当你期望提供一个组件并且能以通用的方式来拓展它时，<a href="https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.ab9g50dfu" target="_blank" rel="external">高阶组件</a>几乎涵盖了我目前所碰到的每一种情形。本质上它们都是<a href="https://en.wikipedia.org/wiki/Higher-order_function" target="_blank" rel="external">高阶函数</a>。</p>
+<p>在发掘出高阶组件之后，我从未觉得还需要<code>createClass()</code>式的mixins，ES7的mixins提案，<a href="https://github.com/stampit-org/react-stampit/blob/master/docs/composition.md" target="_blank" rel="external">“stamp composition”</a>，或者任何其他的组合式方案。这也是倾向仅使用<code>class</code>的另一个论点，因为你实际上并需要任何其他“更强大的”东西。</p>
+<p>在React 0.14以后你可以使用<a href="https://github.com/reactjs/react-future/blob/master/01%20-%20Core/03%20-%20Stateless%20Functions.js" target="_blank" rel="external">纯函数</a>来写组件。这么做是完全值得的。任何时候你能用一个函数来替代一个类，你都该这么做。</p>
+<p>然而，当你需要生命周期事件或者state时，除非React推出一些<a href="https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State" target="_blank" rel="external">纯函数式的</a><a href="https://github.com/reactjs/react-future/tree/master/09%20-%20Reduce%20State" target="_blank" rel="external">解决方案</a>，在不破坏上述规则的情况下使用类我认为并没有什么坏处。事实上从ES6类的方式迁移到纯函数式方案要比其他方式来得容易。</p>
+<p>我也对使用不是直接建立在React的组合模型上的“组合式的方案”感到担忧，在我看来这是一种倒退，因为概念上它更接近于放在函数式范式中一点都不合理的mixins方案。</p>
+<p>那么我对编写React组件的建议是什么呢？</p>
+<ul>
+<li><p>你可以使用<code>class</code>如果你不继承两次以上并且不使用<code>super</code>。</p>
+</li>
+<li><p>尽可能优先考虑用纯函数来编写React组件。</p>
+</li>
+<li><p>在你需要state或者是生命周期时使用ES6的类。</p>
+</li>
+<li><p>在使用类的情况下，你只能直接从<code>React.Component</code>上继承。</p>
+</li>
+<li><p>关于函数式<a href="https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State" target="_blank" rel="external">状态</a><a href="https://github.com/reactjs/react-future/tree/master/09%20-%20Reduce%20State" target="_blank" rel="external">提案</a>向React团队反馈你的意见。</p>
+</li>
+</ul>
+<p>那么睡个好觉吧！</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>留言:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="https://twitter.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/distums" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:yiqidaoshan@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 distums<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'distums';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
